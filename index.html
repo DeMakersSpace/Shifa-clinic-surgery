@@ -264,26 +264,69 @@
       pointer-events: none;
     }
 
-    .pillar {
-      background: var(--cream);
-      border: 1px solid rgba(10,51,64,0.08);
-      border-radius: 2px;
-      padding: 2.25rem 2rem;
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
-      box-shadow: 0 2px 8px rgba(10,51,64,0.05);
+    /* ── TURNSTILE ── */
+    .turnstile-wrap { position:relative; width:100%; padding:0 0 3rem; overflow:visible; }
+    .turnstile-stage { position:relative; height:420px; perspective:1100px; display:flex; align-items:center; justify-content:center; touch-action:pan-y; }
+
+    .tcard {
+      position:absolute;
+      width:300px; height:320px;
+      border-radius:4px;
+      cursor:grab;
+      background:var(--cream);
+      border:1px solid rgba(10,51,64,0.08);
+      box-shadow:0 8px 24px rgba(10,51,64,0.08);
+      transition:transform 0.65s cubic-bezier(0.23,1,0.32,1), opacity 0.55s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      overflow:hidden;
     }
-    .pillar:hover {
-      transform: translateY(-5px);
-      border-color: rgba(201,148,74,0.25);
-      box-shadow: 0 12px 36px rgba(10,51,64,0.1), 0 0 0 1px rgba(201,148,74,0.15);
+    .tcard:active { cursor:grabbing; }
+
+    .tcard-body { width:100%; height:100%; padding:2.25rem 2rem; display:flex; flex-direction:column; }
+
+    /* Fan-spread positions */
+    .tcard[data-pos="0"]      { transform:translateX(0)     translateZ(0)     scale(1);    z-index:10; opacity:1;    border-color:rgba(201,148,74,0.3); box-shadow:0 20px 60px rgba(10,51,64,0.14), 0 0 0 1px rgba(201,148,74,0.18), inset 0 1px 0 rgba(255,255,255,0.7); }
+    .tcard[data-pos="1"]      { transform:translateX(230px)  translateZ(-120px) scale(0.74); z-index:6;  opacity:0.5;  }
+    .tcard[data-pos="-1"]     { transform:translateX(-230px) translateZ(-120px) scale(0.74); z-index:6;  opacity:0.5;  }
+    .tcard[data-pos="2"]      { transform:translateX(370px)  translateZ(-220px) scale(0.56); z-index:3;  opacity:0.22; }
+    .tcard[data-pos="-2"]     { transform:translateX(-370px) translateZ(-220px) scale(0.56); z-index:3;  opacity:0.22; }
+    .tcard[data-pos="hidden"] { transform:translateX(0)     translateZ(-600px) scale(0.3);  z-index:1;  opacity:0;    pointer-events:none; }
+
+    /* Float — only the body of the front card lifts */
+    @keyframes ts-float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+    .tcard[data-pos="0"] .tcard-body { animation:ts-float 4s ease-in-out infinite; }
+
+    .ts-icon {
+      width:52px; height:52px; border-radius:50%;
+      background:linear-gradient(135deg,rgba(10,51,64,0.08),rgba(201,148,74,0.1));
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:1.25rem; flex-shrink:0;
     }
 
-    .pillar-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: linear-gradient(135deg, rgba(10,51,64,0.08), rgba(201,148,74,0.1));
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
+    /* Controls row */
+    .turnstile-controls { display:flex; align-items:center; justify-content:center; gap:1.2rem; margin-top:2rem; }
+
+    .tc-btn {
+      width:44px; height:44px; border-radius:50%;
+      border:1.5px solid rgba(26,107,124,0.3);
+      background:white; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--text-muted);
+      transition:background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
     }
+    .tc-btn:hover  { background:var(--forest); border-color:var(--forest); color:white; transform:scale(1.08); }
+    .tc-btn:active { transform:scale(0.95); }
+    .tc-btn:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+
+    .tc-dots { display:flex; gap:0.45rem; align-items:center; }
+    .tc-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:rgba(26,107,124,0.22);
+      cursor:pointer; border:none; padding:0;
+      transition:width 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
+    }
+    .tc-dot.on          { width:18px; border-radius:3px; background:var(--gold); }
+    .tc-dot:hover:not(.on) { background:rgba(26,107,124,0.45); }
+    .tc-dot:focus-visible  { outline:2px solid var(--gold); outline-offset:2px; }
 
     /* ── DOCTORS CHARACTER SELECT ── */
     #doctors { background: var(--forest-deep); }
@@ -999,36 +1042,63 @@
       </div>
     </div>
 
-    <!-- 3 pillars -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;" class="pillars-grid">
-      <div class="pillar reveal">
-        <div class="pillar-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
+    <!-- 3 pillars — Rotating Turnstile -->
+    <!-- 3 pillars — Fan-Spread Turnstile -->
+    <div class="turnstile-wrap reveal" id="turnstile" aria-label="Our three pillars of care">
+
+      <div class="turnstile-stage" id="ts-stage">
+
+        <!-- Card 0: Experience & Professionalism -->
+        <div class="tcard" data-pos="0" data-card="0">
+          <div class="tcard-body">
+            <div class="ts-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Experience &amp; Professionalism</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">Our medical team assesses each patient thoroughly and creates customised recovery and wellness plans tailored to individual needs.</p>
+          </div>
         </div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Experience &amp; Professionalism</h3>
-        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">Our medical team assesses each patient thoroughly and creates customised recovery and wellness plans tailored to individual needs.</p>
-      </div>
-      <div class="pillar reveal reveal-delay-2">
-        <div class="pillar-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
+
+        <!-- Card 1: Preventive Care -->
+        <div class="tcard" data-pos="1" data-card="1">
+          <div class="tcard-body">
+            <div class="ts-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Preventive Care</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">Beyond treating existing conditions, our doctors implement proactive prevention strategies — maximising your health for the long term.</p>
+          </div>
         </div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Preventive Care</h3>
-        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">Beyond treating existing conditions, our doctors implement proactive prevention strategies — maximising your health for the long term.</p>
-      </div>
-      <div class="pillar reveal reveal-delay-3">
-        <div class="pillar-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-          </svg>
+
+        <!-- Card 2: Patient Education -->
+        <div class="tcard" data-pos="-1" data-card="2">
+          <div class="tcard-body">
+            <div class="ts-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Patient Education</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">We prioritise teaching patients effective body care techniques so you leave each visit empowered with knowledge, not just treatment.</p>
+          </div>
         </div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Patient Education</h3>
-        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">We prioritise teaching patients effective body care techniques so you leave each visit empowered with knowledge, not just treatment.</p>
+
+      </div><!-- /turnstile-stage -->
+
+      <!-- Controls -->
+      <div class="turnstile-controls">
+        <button class="tc-btn" id="ts-prev" aria-label="Previous pillar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="tc-dots" role="tablist" aria-label="Pillar navigation">
+          <button class="tc-dot on" data-card="0" role="tab" aria-selected="true"  aria-label="Experience & Professionalism"></button>
+          <button class="tc-dot"    data-card="1" role="tab" aria-selected="false" aria-label="Preventive Care"></button>
+          <button class="tc-dot"    data-card="2" role="tab" aria-selected="false" aria-label="Patient Education"></button>
+        </div>
+        <button class="tc-btn" id="ts-next" aria-label="Next pillar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
-    </div>
+
+    </div><!-- /turnstile-wrap -->
   </div>
 </section>
 
@@ -1634,7 +1704,7 @@
 
     /* Practice grid */
     .practice-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
-    .pillars-grid  { grid-template-columns: repeat(2, 1fr) !important; }
+    /* .pillars-grid replaced by .turnstile-wrapper */
 
     /* Contact grid */
     .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
@@ -1675,7 +1745,7 @@
 
     /* Practice grid */
     .practice-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-    .pillars-grid  { grid-template-columns: 1fr !important; }
+    /* .pillars-grid replaced by .turnstile-wrapper */
 
     /* Show the floating badge on mobile — add bottom padding so it isn't clipped */
     .practice-badge { display: block !important; }
@@ -1781,6 +1851,55 @@
     form.style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
   }
+
+  // ── TURNSTILE CAROUSEL ──
+  (function () {
+    const cards   = document.querySelectorAll('.tcard');
+    const dots    = document.querySelectorAll('.tc-dot');
+    const btnPrev = document.getElementById('ts-prev');
+    const btnNext = document.getElementById('ts-next');
+    if (!cards.length) return;
+
+    const n = cards.length;
+    let current = 0;
+    let timer;
+
+    // rel=0 → front, rel=1 → right, rel=n-1 → left
+    const POS = { 0: '0', 1: '1', [n - 1]: '-1' };
+
+    function setPositions() {
+      cards.forEach((card, i) => {
+        const rel = ((i - current) % n + n) % n;
+        card.setAttribute('data-pos', POS[rel] ?? 'hidden');
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('on', i === current);
+        d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+    }
+
+    function next() { current = (current + 1) % n; setPositions(); }
+    function prev() { current = (current - 1 + n) % n; setPositions(); }
+
+    function startAuto() { timer = setInterval(next, 3500); }
+    function stopAuto()  { clearInterval(timer); }
+
+    if (btnPrev) btnPrev.addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
+    if (btnNext) btnNext.addEventListener('click', () => { stopAuto(); next(); startAuto(); });
+
+    dots.forEach((d, i) => {
+      d.addEventListener('click', () => { stopAuto(); current = i; setPositions(); startAuto(); });
+    });
+
+    const wrapper = document.getElementById('turnstile');
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', stopAuto);
+      wrapper.addEventListener('mouseleave', startAuto);
+    }
+
+    setPositions();
+    startAuto();
+  })();
 
   // Video card keyboard accessibility
   document.querySelectorAll('.video-card[role="link"]').forEach(card => {
