@@ -993,7 +993,7 @@
         <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,51,64,0.4) 0%, transparent 60%); border-radius:2px;"></div>
         <div style="position:absolute; inset:0; mix-blend-mode:multiply; background:rgba(10,51,64,0.1); border-radius:2px;"></div>
         <!-- Floating badge -->
-        <div style="position:absolute; bottom:-1.5rem; right:-1.5rem; background:var(--gold); color:var(--forest-deep); padding:1.25rem 1.5rem; border-radius:2px; box-shadow:0 8px 24px rgba(201,148,74,0.35);">
+        <div class="practice-badge" style="position:absolute; bottom:-1.5rem; right:-1.5rem; background:var(--gold); color:var(--forest-deep); padding:1.25rem 1.5rem; border-radius:2px; box-shadow:0 8px 24px rgba(201,148,74,0.35);">
           <div style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600; line-height:1;">30+</div>
           <div style="font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.25rem;">Years of Care</div>
         </div>
@@ -1678,11 +1678,16 @@
     .practice-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
     .pillars-grid  { grid-template-columns: 1fr !important; }
 
-    /* Floating badge — reposition so it doesn't overflow */
-    .practice-grid > div:last-child > div[style*="position:absolute"][style*="bottom"] {
+    /* Image shadow — remove large shadow that creates visible block on mobile */
+    #practice img { box-shadow: none !important; }
+
+    /* Floating badge — pull out of absolute positioning so it sits below the image */
+    .practice-badge {
       position: static !important;
-      margin-top: 1rem;
       display: inline-block;
+      margin-top: 1rem;
+      bottom: auto !important;
+      right: auto !important;
     }
 
     /* Services carousel cards */
