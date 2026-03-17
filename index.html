@@ -340,6 +340,23 @@
       margin-bottom:1.25rem; flex-shrink:0;
     }
 
+    /* Dark-background tcard variant (used in services section) */
+    .tcard.tcard-dark {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .tcard.tcard-dark[data-pos="0"] {
+      border-color: rgba(201,148,74,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,148,74,0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .tcard.tcard-dark h3 { color: #fff; }
+    .tcard.tcard-dark p  { color: rgba(255,255,255,0.5); }
+    .ts-icon-dark {
+      background: linear-gradient(135deg, rgba(33,150,164,0.25), rgba(201,148,74,0.15));
+      border: 1px solid rgba(201,148,74,0.15);
+    }
+
     /* Controls row */
     .turnstile-controls { display:flex; align-items:center; justify-content:center; gap:1.2rem; margin-top:2rem; }
 
@@ -635,74 +652,6 @@
         radial-gradient(ellipse at 20% 50%, rgba(33,150,164,0.12) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 20%, rgba(201,148,74,0.07) 0%, transparent 50%);
       pointer-events: none;
-    }
-
-    /* ── CAROUSEL ── */
-    .carousel-wrapper {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-    }
-    .carousel-track {
-      display: flex;
-      width: max-content;
-      will-change: transform;
-      cursor: grab;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .carousel-track:active { cursor: grabbing; }
-
-    .sc-card {
-      position: relative;
-      width: 270px;
-      flex-shrink: 0;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 2px;
-      padding: 2rem 1.75rem 1.75rem;
-      margin-right: 1.25rem;
-      overflow: hidden;
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-    .sc-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(201,148,74,0.2);
-    }
-    /* Gold top-accent line */
-    .sc-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--sage-light));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .sc-card:hover::before { transform: scaleX(1); }
-
-    /* Ghost number */
-    .sc-num {
-      position: absolute; bottom: -0.75rem; right: 0.75rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5.5rem; font-weight: 700; line-height: 1;
-      color: rgba(255,255,255,0.035);
-      letter-spacing: -0.04em;
-      pointer-events: none;
-      transition: color 0.3s ease;
-    }
-    .sc-card:hover .sc-num { color: rgba(201,148,74,0.07); }
-
-    .service-icon {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: linear-gradient(135deg, rgba(33,150,164,0.2), rgba(201,148,74,0.15));
-      border: 1px solid rgba(201,148,74,0.15);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      transition: box-shadow 0.3s ease;
-    }
-    .sc-card:hover .service-icon {
-      box-shadow: 0 0 0 4px rgba(201,148,74,0.08), 0 0 20px rgba(33,150,164,0.2);
     }
 
     /* ── BRANCHES ── */
@@ -1410,64 +1359,127 @@
     <span class="section-label" style="color:var(--gold-pale);">What We Offer</span>
     <div class="gold-rule" style="margin:1.25rem auto;"></div>
     <h2 class="section-title" style="color:#fff;">Our <em style="font-style:italic;">Services</em></h2>
-    <p style="color:rgba(255,255,255,0.3); margin-top:0.875rem; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;">Drag to explore &nbsp;·&nbsp; Hover to pause</p>
+    <p style="color:rgba(255,255,255,0.3); margin-top:0.875rem; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;">Use arrows to explore</p>
   </div>
 
-  <!-- Row — scrolls LEFT -->
-  <div class="carousel-wrapper" id="wrapper-1">
-    <div class="carousel-track" id="carousel-1">
+  <!-- Turnstile -->
+  <div style="max-width:1100px; margin:0 auto; padding:0 2.5rem;">
+    <div class="turnstile-wrap reveal" id="services-turnstile" aria-label="Our services">
 
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">01</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">General Practice</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Comprehensive consultations and treatment for everyday health needs, illnesses, and injuries.</p>
+      <div class="turnstile-stage" id="srv-stage">
+
+        <!-- Card 0: General Practice -->
+        <div class="tcard tcard-dark" data-pos="0" data-card="0">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">General Practice</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Comprehensive consultations and treatment for everyday health needs, illnesses, and injuries.</p>
+          </div>
+        </div>
+
+        <!-- Card 1: Health Screening -->
+        <div class="tcard tcard-dark" data-pos="1" data-card="1">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Health Screening</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Preventive screenings and check-ups tailored to your age, lifestyle, and risk profile.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Preventive Care -->
+        <div class="tcard tcard-dark" data-pos="hidden" data-card="2">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Preventive Care</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Proactive strategies and lifestyle counselling to maintain and maximise your long-term wellbeing.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Occupational Medicine -->
+        <div class="tcard tcard-dark" data-pos="hidden" data-card="3">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Occupational Medicine</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Workplace health assessments, fitness-to-work evaluations, and work-related condition management.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Paediatrics -->
+        <div class="tcard tcard-dark" data-pos="hidden" data-card="4">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Paediatrics</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Dedicated and compassionate care for infants, children, and adolescents at every stage of growth.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Women's Health -->
+        <div class="tcard tcard-dark" data-pos="hidden" data-card="5">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Women's Health</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Holistic and sensitive care for women at every stage of life, from reproductive health to menopause.</p>
+          </div>
+        </div>
+
+        <!-- Card 6: Vaccinations -->
+        <div class="tcard tcard-dark" data-pos="hidden" data-card="6">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 3-3-6-3 6-3-3H2"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Vaccinations</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Full range of immunisations for children and adults, including travel vaccines and flu shots.</p>
+          </div>
+        </div>
+
+        <!-- Card 7: Chronic Disease Management -->
+        <div class="tcard tcard-dark" data-pos="-1" data-card="7">
+          <div class="tcard-body">
+            <div class="ts-icon ts-icon-dark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Chronic Disease Management</h3>
+            <p style="font-size:0.9rem; line-height:1.75;">Ongoing support and monitoring for diabetes, hypertension, high cholesterol, and other long-term conditions.</p>
+          </div>
+        </div>
+
+      </div><!-- /srv-stage -->
+
+      <!-- Controls -->
+      <div class="turnstile-controls">
+        <button class="tc-btn" id="srv-prev" aria-label="Previous service">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="tc-dots" role="tablist" aria-label="Service navigation">
+          <button class="tc-dot on"  data-card="0" role="tab" aria-selected="true"  aria-label="General Practice"></button>
+          <button class="tc-dot"     data-card="1" role="tab" aria-selected="false" aria-label="Health Screening"></button>
+          <button class="tc-dot"     data-card="2" role="tab" aria-selected="false" aria-label="Preventive Care"></button>
+          <button class="tc-dot"     data-card="3" role="tab" aria-selected="false" aria-label="Occupational Medicine"></button>
+          <button class="tc-dot"     data-card="4" role="tab" aria-selected="false" aria-label="Paediatrics"></button>
+          <button class="tc-dot"     data-card="5" role="tab" aria-selected="false" aria-label="Women's Health"></button>
+          <button class="tc-dot"     data-card="6" role="tab" aria-selected="false" aria-label="Vaccinations"></button>
+          <button class="tc-dot"     data-card="7" role="tab" aria-selected="false" aria-label="Chronic Disease Management"></button>
+        </div>
+        <button class="tc-btn" id="srv-next" aria-label="Next service">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
 
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">02</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Health Screening</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Preventive screenings and check-ups tailored to your age, lifestyle, and risk profile.</p>
-      </div>
-
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">03</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Preventive Care</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Proactive strategies and lifestyle counselling to maintain and maximise your long-term wellbeing.</p>
-      </div>
-
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">04</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Occupational Medicine</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Workplace health assessments, fitness-to-work evaluations, and work-related condition management.</p>
-      </div>
-
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">05</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Paediatrics</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Dedicated and compassionate care for infants, children, and adolescents at every stage of growth.</p>
-      </div>
-
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">06</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Women's Health</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Holistic and sensitive care for women at every stage of life, from reproductive health to menopause.</p>
-      </div>
-
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">07</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 3-3-6-3 6-3-3H2"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Vaccinations</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Full range of immunisations for children and adults, including travel vaccines and flu shots.</p>
-      </div>
-
-      <div class="sc-card"><span class="sc-num" aria-hidden="true">08</span>
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Chronic Disease Management</h3>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Ongoing support and monitoring for diabetes, hypertension, high cholesterol, and other long-term conditions.</p>
-      </div>
-
-    </div><!-- /#carousel-1 -->
+    </div><!-- /services-turnstile -->
   </div>
-
 
 </section>
 
@@ -1494,12 +1506,12 @@
 
     <div class="branches-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem;">
 
-      <!-- Main Branch -->
-      <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Chander Road branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}" style="outline:none;">
-        <div style="display:flex; align-items:center; gap:0.625rem; margin-bottom:1.5rem;">
-          <span style="background:var(--gold); color:var(--forest-deep); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Main Clinic</span>
+      <!-- Little India Branch -->
+      <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Little India branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}" style="outline:none;">
+        <div style="margin-bottom:1.5rem;">
+          <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Little India</span>
         </div>
-        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Chander Road</h3>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Little India Branch</h3>
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">668 Chander Rd, #01-20<br>Singapore 210668</p>
         <div style="display:flex; flex-direction:column; gap:0.75rem;">
           <a class="branch-contact-link" href="tel:62957667">
@@ -2033,9 +2045,6 @@
     .tcard[data-pos="2"],
     .tcard[data-pos="-2"]     { opacity: 0 !important; pointer-events: none !important; }
 
-    /* ── Services carousel ── */
-    .sc-card { width: 220px !important; }
-
     /* ── Branches ── */
     .branches-grid { grid-template-columns: 1fr !important; }
     .branch-card { padding: 1.75rem 1.5rem !important; }
@@ -2106,7 +2115,6 @@
   @media (max-width: 380px) {
     .hero-title { font-size: 2.1rem !important; }
     .btn-wa { font-size: 0.75rem !important; }
-    .sc-card { width: 190px !important; }
     .tcard { width: 230px !important; }
     .tcard[data-pos="1"]  { transform: translateX(120px) translateZ(-70px) scale(0.74) !important; opacity: 0.18 !important; }
     .tcard[data-pos="-1"] { transform: translateX(-120px) translateZ(-70px) scale(0.74) !important; opacity: 0.18 !important; }
@@ -2164,12 +2172,15 @@
     document.getElementById('form-success').style.display = 'block';
   }
 
-  // ── TURNSTILE CAROUSEL ──
-  (function () {
-    const cards   = document.querySelectorAll('.tcard');
-    const dots    = document.querySelectorAll('.tc-dot');
-    const btnPrev = document.getElementById('ts-prev');
-    const btnNext = document.getElementById('ts-next');
+  // ── TURNSTILE CAROUSEL (factory) ──
+  function initTurnstile(stageId, prevId, nextId, wrapperId, interval) {
+    const stage = document.getElementById(stageId);
+    if (!stage) return;
+    const cards   = stage.querySelectorAll('.tcard');
+    const wrapper = document.getElementById(wrapperId);
+    const dots    = wrapper ? wrapper.querySelectorAll('.tc-dot') : [];
+    const btnPrev = document.getElementById(prevId);
+    const btnNext = document.getElementById(nextId);
     if (!cards.length) return;
 
     const n = cards.length;
@@ -2193,7 +2204,7 @@
     function next() { current = (current + 1) % n; setPositions(); }
     function prev() { current = (current - 1 + n) % n; setPositions(); }
 
-    function startAuto() { timer = setInterval(next, 3500); }
+    function startAuto() { timer = setInterval(next, interval || 3500); }
     function stopAuto()  { clearInterval(timer); }
 
     if (btnPrev) btnPrev.addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
@@ -2203,7 +2214,6 @@
       d.addEventListener('click', () => { stopAuto(); current = i; setPositions(); startAuto(); });
     });
 
-    const wrapper = document.getElementById('turnstile');
     if (wrapper) {
       wrapper.addEventListener('mouseenter', stopAuto);
       wrapper.addEventListener('mouseleave', startAuto);
@@ -2211,7 +2221,10 @@
 
     setPositions();
     startAuto();
-  })();
+  }
+
+  initTurnstile('ts-stage',  'ts-prev',  'ts-next',  'turnstile',          3500);
+  initTurnstile('srv-stage', 'srv-prev', 'srv-next', 'services-turnstile', 3000);
 
   // Video card keyboard accessibility
   document.querySelectorAll('.video-card[role="link"]').forEach(card => {
@@ -2421,88 +2434,6 @@
   // Init description on load
   document.getElementById('doc-desc-inner').innerHTML = renderDocDesc('ghazali');
 
-  // ── INFINITE CAROUSEL ──
-  class InfiniteCarousel {
-    constructor(trackEl, wrapperEl, speedPx, goLeft) {
-      this.track   = trackEl;
-      this.wrapper = wrapperEl;
-      this.speed   = speedPx;   // pixels per second
-      this.goLeft  = goLeft;    // true = left, false = right
-      this.pos     = 0;
-      this.half    = 0;
-      this.paused  = false;
-      this.dragging = false;
-      this.dragStartX = 0;
-      this.lastTimestamp = null;
-
-      this._duplicateCards();
-      this._measure();
-      this._bindEvents();
-      requestAnimationFrame(ts => this._tick(ts));
-    }
-
-    _duplicateCards() {
-      // Clone the original set of cards and append them for seamless loop
-      const originals = Array.from(this.track.children);
-      originals.forEach(card => this.track.appendChild(card.cloneNode(true)));
-    }
-
-    _measure() {
-      // half = width of one set (half the total duplicated track)
-      this.half = this.track.scrollWidth / 2;
-      // For rightward motion start offset so loop works correctly
-      if (!this.goLeft) this.pos = -this.half;
-    }
-
-    _tick(ts) {
-      if (this.lastTimestamp !== null && !this.paused && !this.dragging) {
-        const dt = ts - this.lastTimestamp;
-        const delta = (this.speed / 1000) * dt;
-        this.pos += this.goLeft ? -delta : delta;
-      }
-      this.lastTimestamp = ts;
-      this._loop();
-      this.track.style.transform = `translateX(${this.pos}px)`;
-      requestAnimationFrame(ts2 => this._tick(ts2));
-    }
-
-    _loop() {
-      if (this.goLeft  && this.pos <= -this.half) this.pos += this.half;
-      if (!this.goLeft && this.pos >= 0)           this.pos -= this.half;
-    }
-
-    _bindEvents() {
-      // Pause on hover over wrapper
-      this.wrapper.addEventListener('mouseenter', () => { this.paused = true;  });
-      this.wrapper.addEventListener('mouseleave', () => { this.paused = false; });
-
-      // Drag
-      this.track.addEventListener('pointerdown', e => {
-        this.dragging   = true;
-        this.dragStartX = e.clientX;
-        this.track.setPointerCapture(e.pointerId);
-      });
-      this.track.addEventListener('pointermove', e => {
-        if (!this.dragging) return;
-        const dx = e.clientX - this.dragStartX;
-        this.pos += dx;
-        this.dragStartX = e.clientX;
-        this._loop();
-      });
-      this.track.addEventListener('pointerup',     () => { this.dragging = false; this.lastTimestamp = null; });
-      this.track.addEventListener('pointercancel', () => { this.dragging = false; this.lastTimestamp = null; });
-    }
-  }
-
-  // Init both carousels after layout is stable
-  window.addEventListener('load', () => {
-    new InfiniteCarousel(
-      document.getElementById('carousel-1'),
-      document.getElementById('wrapper-1'),
-      55,    // px/s
-      true   // left
-    );
-  });
 
   // ── MAP MODAL ──
   const BRANCHES = {
