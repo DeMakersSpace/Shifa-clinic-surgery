@@ -896,7 +896,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </svg>
-      WhatsApp Appt
+      <span>WhatsApp Appt</span>
     </a>
     <a class="btn-tel" href="tel:62957667" aria-label="Call main clinic">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1248,7 +1248,7 @@
     </div>
 
     <!-- Hours banner -->
-    <div class="reveal" style="background:var(--forest); border-radius:2px; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; box-shadow:0 4px 20px rgba(10,51,64,0.15);">
+    <div class="reveal hours-banner" style="background:var(--forest); border-radius:2px; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; box-shadow:0 4px 20px rgba(10,51,64,0.15);">
       <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.85); font-size:0.875rem;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-pale)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <strong style="color:#fff;">Opening Hours</strong>
@@ -1257,7 +1257,7 @@
       <div style="color:rgba(255,255,255,0.45); font-size:0.875rem;">Lunch break: 1:00 PM – 2:00 PM (closed)</div>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem;">
+    <div class="branches-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem;">
 
       <!-- Main Branch -->
       <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Chander Road branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}" style="outline:none;">
@@ -1627,13 +1627,140 @@
   </div>
 </div>
 
-<!-- ══════════ RESPONSIVE GRID FIXES ══════════ -->
+<!-- ══════════ RESPONSIVE / MOBILE ══════════ -->
 <style>
-  @media (max-width: 768px) {
+
+  /* ── TABLET (≤ 900px) ── */
+  @media (max-width: 900px) {
+    /* Reduce all heavy section padding */
+    #practice, #branches, #media, #contact, #privacy {
+      padding: 5rem 1.75rem !important;
+    }
+    #services { padding: 5rem 0 !important; }
+
+    /* Practice grid */
     .practice-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
-    .pillars-grid  { grid-template-columns: 1fr !important; }
+    .pillars-grid  { grid-template-columns: repeat(2, 1fr) !important; }
+
+    /* Contact grid */
     .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
+
+    /* Doctor section */
+    #doctors { padding: 5rem 1.75rem !important; }
+    .doc-list-item.ds-active .doc-list-name { font-size: 1.35rem !important; }
   }
+
+  /* ── MOBILE (≤ 640px) ── */
+  @media (max-width: 640px) {
+
+    /* Header */
+    #header { padding: 0.875rem 1.25rem !important; }
+    .nav-ctas .btn-tel { display: none; }
+    .btn-wa span:not([aria-hidden]) { display: none; }
+    .btn-wa { padding: 0.625rem 0.875rem !important; }
+    .logo-text img { height: 36px !important; }
+    .logo-text span { font-size: 1.1rem !important; }
+    .logo-sub { display: none !important; }
+
+    /* Hero */
+    #hero { padding: 6rem 1.25rem 4rem !important; }
+    .hero-leaf-1, .hero-leaf-2 { display: none !important; }
+    .hero-glow { display: none !important; }
+    #hero h1 { font-size: clamp(2.4rem, 10vw, 3.5rem) !important; }
+    #hero p  { font-size: 1rem !important; }
+
+    /* Section titles & labels */
+    .section-title { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+
+    /* Section padding */
+    #practice, #branches, #media, #contact, #privacy {
+      padding: 4rem 1.25rem !important;
+    }
+    #services { padding: 4rem 0 !important; }
+    #doctors  { padding: 4rem 1.25rem !important; }
+
+    /* Practice grid */
+    .practice-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    .pillars-grid  { grid-template-columns: 1fr !important; }
+
+    /* Floating badge — reposition so it doesn't overflow */
+    .practice-grid > div:last-child > div[style*="position:absolute"][style*="bottom"] {
+      position: static !important;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+
+    /* Services carousel cards */
+    .sc-card { width: 220px !important; }
+
+    /* Branches grid */
+    .branches-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Doctor character select */
+    .doc-selector { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .doc-photo-stage { height: 340px !important; }
+    .doc-list-name { font-size: 1.1rem !important; }
+    .doc-list-item.ds-active .doc-list-name { font-size: 1.25rem !important; }
+    .doc-desc-panel { margin-top: 1.25rem !important; padding-top: 1.25rem !important; }
+
+    /* Map modal */
+    #map-modal-box {
+      grid-template-columns: 1fr !important;
+      max-width: 100% !important;
+      margin: 0 0.75rem !important;
+      border-radius: 4px !important;
+    }
+    #map-info-panel { padding: 1.5rem 1.25rem !important; }
+
+    /* Video modal */
+    #video-modal { padding: 1rem !important; }
+    #video-modal-box { border-radius: 4px !important; }
+
+    /* Doctor modal */
+    #doctor-modal { padding: 1rem !important; }
+    #doctor-modal-box { border-radius: 4px !important; max-height: 92vh !important; }
+    .modal-header { padding: 1.75rem 1.25rem 1.5rem !important; }
+    .modal-body { padding: 1.5rem 1.25rem !important; }
+
+    /* Contact form */
+    .contact-grid  { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+
+    /* Footer */
+    footer { padding: 2.5rem 1.25rem !important; }
+    footer > div { flex-direction: column !important; gap: 1.5rem !important; text-align: center !important; }
+
+    /* Hours ribbon in hero */
+    #hero [style*="position:absolute"][style*="bottom:0"] {
+      gap: 1rem !important;
+      padding: 0.75rem 1.25rem !important;
+      justify-content: flex-start !important;
+      overflow-x: auto !important;
+    }
+
+    /* Hours banner in branches */
+    .hours-banner {
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      align-items: flex-start !important;
+    }
+
+    /* Background paths — fewer drawn on mobile for performance */
+    .bg-paths-layer { opacity: 0.6; }
+
+    /* Progress ticks — slightly smaller */
+    .doc-tick { width: 14px !important; }
+    .doc-tick.tick-active { width: 28px !important; }
+  }
+
+  /* ── EXTRA SMALL (≤ 380px) ── */
+  @media (max-width: 380px) {
+    #hero h1 { font-size: 2.1rem !important; }
+    .btn-wa { font-size: 0.75rem !important; }
+    .sc-card { width: 190px !important; }
+  }
+
 </style>
 
 <!-- ══════════ JAVASCRIPT ══════════ -->
