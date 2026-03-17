@@ -833,7 +833,6 @@
     /* Light sections need relative + overflow for background paths */
     #practice, #branches, #media {
       position: relative;
-      overflow: hidden;
     }
     /* Ensure section content sits above the paths layer */
     #practice > *, #branches > *, #media > * {
@@ -989,9 +988,9 @@
         </blockquote>
       </div>
       <div class="reveal reveal-delay-2 practice-img-wrap" style="position:relative;">
-        <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover;">
-        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,51,64,0.4) 0%, transparent 60%); border-radius:2px;"></div>
-        <div style="position:absolute; inset:0; mix-blend-mode:multiply; background:rgba(10,51,64,0.1); border-radius:2px;"></div>
+        <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover; box-shadow:none;">
+    
+
         <!-- Floating badge -->
         <div class="practice-badge" style="position:absolute; bottom:-1.5rem; right:-1.5rem; background:var(--gold); color:var(--forest-deep); padding:1.25rem 1.5rem; border-radius:2px; box-shadow:0 8px 24px rgba(201,148,74,0.35);">
           <div style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600; line-height:1;">30+</div>
@@ -2231,6 +2230,10 @@
     });
   })();
 </script>
+
+<div style="text-align:center; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: #4a7a88;">
+  Website design by <a href="https://www.instagram.com/de.makers.space/" target="_blank" rel="noopener noreferrer" style="color: #1a6b7c; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(26,107,124,0.3); transition: color 0.2s, border-color 0.2s;" onmouseover="this.style.color='#0a3340';this.style.borderColor='rgba(10,51,64,0.6)'" onmouseout="this.style.color='#1a6b7c';this.style.borderColor='rgba(26,107,124,0.3)'">De Makers Space</a>
+</div>
 
 </body>
 </html>
