@@ -988,8 +988,8 @@
           "Preventive Health is your insurance for a Healthy Retirement"
         </blockquote>
       </div>
-      <div class="reveal reveal-delay-2" style="position:relative;">
-        <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover; box-shadow:0 24px 64px rgba(10,51,64,0.18);">
+      <div class="reveal reveal-delay-2 practice-img-wrap" style="position:relative;">
+        <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover;">
         <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,51,64,0.4) 0%, transparent 60%); border-radius:2px;"></div>
         <div style="position:absolute; inset:0; mix-blend-mode:multiply; background:rgba(10,51,64,0.1); border-radius:2px;"></div>
         <!-- Floating badge -->
@@ -1678,17 +1678,9 @@
     .practice-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
     .pillars-grid  { grid-template-columns: 1fr !important; }
 
-    /* Image shadow — remove large shadow that creates visible block on mobile */
-    #practice img { box-shadow: none !important; }
-
-    /* Floating badge — pull out of absolute positioning so it sits below the image */
-    .practice-badge {
-      position: static !important;
-      display: inline-block;
-      margin-top: 1rem;
-      bottom: auto !important;
-      right: auto !important;
-    }
+    /* Hide the floating badge and clip the image container on mobile */
+    .practice-badge { display: none !important; }
+    .practice-img-wrap { overflow: hidden !important; }
 
     /* Services carousel cards */
     .sc-card { width: 220px !important; }
