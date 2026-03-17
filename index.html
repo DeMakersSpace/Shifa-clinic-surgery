@@ -1167,14 +1167,12 @@
   </div>
 
   <!-- Hours ribbon -->
-  <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(10,51,64,0.6); backdrop-filter:blur(8px); border-top:1px solid rgba(201,148,74,0.15); padding:0.875rem 2.5rem; display:flex; align-items:center; justify-content:center; gap:2.5rem; flex-wrap:wrap;">
+  <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(10,51,64,0.6); backdrop-filter:blur(8px); border-top:1px solid rgba(201,148,74,0.15); padding:1rem 2.5rem; display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
     <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.7); font-size:0.8rem; letter-spacing:0.05em;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <strong style="color:#fff;">Mon – Sun</strong>&nbsp;9:00 AM – 7:00 PM
     </div>
-    <div style="width:1px; height:18px; background:rgba(255,255,255,0.1);"></div>
     <div style="color:rgba(255,255,255,0.5); font-size:0.8rem;">Closed for lunch 1:00 – 2:00 PM</div>
-    <div style="width:1px; height:18px; background:rgba(255,255,255,0.1);"></div>
     <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.7); font-size:0.8rem;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       3 Locations Across Singapore
@@ -1958,77 +1956,118 @@
 
   /* ── TABLET (≤ 900px) ── */
   @media (max-width: 900px) {
-    /* Reduce all heavy section padding */
-    #practice, #branches, #media, #contact, #privacy {
+    /* Section padding */
+    #practice, #branches, #media, #contact, #privacy, #testimonials {
       padding: 5rem 1.75rem !important;
     }
     #services { padding: 5rem 0 !important; }
+    #doctors  { padding: 5rem 1.75rem !important; }
 
-    /* Practice grid */
+    /* Grids */
     .practice-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
-    /* .pillars-grid replaced by .turnstile-wrapper */
-
-    /* Contact grid */
     .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
 
-    /* Doctor section */
-    #doctors { padding: 5rem 1.75rem !important; }
+    /* Doctors */
     .doc-list-item.ds-active .doc-list-name { font-size: 1.35rem !important; }
+
+    /* Testimonials trust bar */
+    #testimonials [style*="gap:4rem"] { gap: 2.5rem !important; }
   }
 
   /* ── MOBILE (≤ 640px) ── */
   @media (max-width: 640px) {
 
-    /* Header */
+    /* ── Header ── */
     #header { padding: 0.875rem 1.25rem !important; }
-    .nav-ctas .btn-tel { display: none; }
+    .nav-ctas .btn-tel { display: none !important; }
     .btn-wa span:not([aria-hidden]) { display: none; }
     .btn-wa { padding: 0.625rem 0.875rem !important; }
     .logo-text img { height: 36px !important; }
     .logo-text span { font-size: 1.1rem !important; }
     .logo-sub { display: none !important; }
+    /* Ensure hamburger is reachable — 44×44 tap target */
+    .mobile-menu-btn { padding: 10px !important; margin-right: -10px; }
 
-    /* Hero */
-    #hero { padding: 6rem 1.25rem 4rem !important; }
+    /* ── Hero ── */
+    #hero { min-height: auto !important; }
+    .hero-content { padding: 7rem 1.25rem 5rem !important; }
     .hero-leaf-1, .hero-leaf-2 { display: none !important; }
     .hero-glow { display: none !important; }
-    #hero h1 { font-size: clamp(2.4rem, 10vw, 3.5rem) !important; }
-    #hero p  { font-size: 1rem !important; }
+    .hero-title { font-size: clamp(2.4rem, 10vw, 3.5rem) !important; }
+    .hero-tagline { font-size: 1rem !important; }
+    .hero-scroll-hint { display: none !important; }
+    /* Stack CTA buttons vertically */
+    .hero-ctas { flex-direction: column !important; gap: 0.75rem !important; }
+    .hero-ctas .btn-gold,
+    .hero-ctas .btn-outline-white { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+    /* Hours ribbon — scrollable */
+    #hero > div[style*="position:absolute"] {
+      gap: 1rem !important;
+      padding: 0.75rem 1.25rem !important;
+      justify-content: flex-start !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
 
-    /* Section titles & labels */
-    .section-title { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+    /* ── Typography ── */
+    .section-title { font-size: clamp(1.9rem, 8vw, 2.6rem) !important; }
 
-    /* Section padding */
-    #practice, #branches, #media, #contact, #privacy {
+    /* ── Section padding ── */
+    #practice, #branches, #media, #contact, #privacy, #testimonials {
       padding: 4rem 1.25rem !important;
     }
     #services { padding: 4rem 0 !important; }
     #doctors  { padding: 4rem 1.25rem !important; }
 
-    /* Practice grid */
+    /* ── Practice ── */
     .practice-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-    /* .pillars-grid replaced by .turnstile-wrapper */
-
-    /* Show the floating badge on mobile — add bottom padding so it isn't clipped */
     .practice-badge { display: block !important; }
     .practice-img-wrap { overflow: visible !important; padding-bottom: 2.5rem !important; }
 
-    /* Services carousel cards */
+    /* ── Turnstile (3-pillar cards) ── */
+    /* Reduce side-card translations so they don't overflow narrow screens */
+    .tcard { width: 260px !important; }
+    .turnstile-stage { height: 360px !important; overflow: hidden !important; }
+    .tcard[data-pos="1"]      { transform: translateX(140px)  translateZ(-80px)  scale(0.76) !important; opacity: 0.22 !important; }
+    .tcard[data-pos="-1"]     { transform: translateX(-140px) translateZ(-80px)  scale(0.76) !important; opacity: 0.22 !important; }
+    .tcard[data-pos="2"],
+    .tcard[data-pos="-2"]     { opacity: 0 !important; pointer-events: none !important; }
+
+    /* ── Services carousel ── */
     .sc-card { width: 220px !important; }
 
-    /* Branches grid */
-    .branches-grid {
-      grid-template-columns: 1fr !important;
-    }
+    /* ── Branches ── */
+    .branches-grid { grid-template-columns: 1fr !important; }
+    .branch-card { padding: 1.75rem 1.5rem !important; }
+    .hours-banner { flex-direction: column !important; gap: 0.75rem !important; align-items: flex-start !important; }
 
-    /* Doctor character select */
+    /* ── Doctors ── */
     .doc-selector { grid-template-columns: 1fr !important; gap: 2rem !important; }
-    .doc-photo-stage { height: 340px !important; }
+    .doc-photo-stage { height: 320px !important; }
+    .doc-list-item { padding: 0.875rem 0 !important; min-height: 48px; }
     .doc-list-name { font-size: 1.1rem !important; }
     .doc-list-item.ds-active .doc-list-name { font-size: 1.25rem !important; }
     .doc-desc-panel { margin-top: 1.25rem !important; padding-top: 1.25rem !important; }
+    .doc-tick { width: 14px !important; }
+    .doc-tick.tick-active { width: 28px !important; }
 
-    /* Map modal */
+    /* ── Testimonials ── */
+    .testi-card { padding: 1.5rem !important; }
+    .testi-quote-mark { font-size: 4rem !important; top: 0 !important; right: 1rem !important; }
+    /* Trust bar: wrap into 2×2 grid on mobile */
+    #testimonials > div > div[style*="border-top"] {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2rem 1.5rem !important;
+      padding-top: 2.5rem !important;
+      margin-top: 2.5rem !important;
+    }
+    /* Hide the vertical dividers inside the trust bar */
+    #testimonials > div > div[style*="border-top"] > div[style*="width:1px"] {
+      display: none !important;
+    }
+
+    /* ── Modals ── */
     #map-modal-box {
       grid-template-columns: 1fr !important;
       max-width: 100% !important;
@@ -2036,52 +2075,41 @@
       border-radius: 4px !important;
     }
     #map-info-panel { padding: 1.5rem 1.25rem !important; }
-
-    /* Video modal */
     #video-modal { padding: 1rem !important; }
     #video-modal-box { border-radius: 4px !important; }
-
-    /* Doctor modal */
     #doctor-modal { padding: 1rem !important; }
     #doctor-modal-box { border-radius: 4px !important; max-height: 92vh !important; }
     .modal-header { padding: 1.75rem 1.25rem 1.5rem !important; }
-    .modal-body { padding: 1.5rem 1.25rem !important; }
+    .modal-body   { padding: 1.5rem 1.25rem !important; }
 
-    /* Contact form */
-    .contact-grid  { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    /* ── Contact ── */
+    .contact-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    /* Make all form fields comfortably tappable */
+    .form-field { font-size: 1rem !important; padding: 0.875rem 1rem !important; }
+    .form-field[type="file"] { font-size: 0.85rem !important; }
 
-    /* Footer */
+    /* ── Mobile nav links ── */
+    .mobile-nav-link { font-size: 1.6rem !important; padding: 0.75rem 0 !important; }
+
+    /* ── Footer ── */
     footer { padding: 2.5rem 1.25rem !important; }
-    footer > div { flex-direction: column !important; gap: 1.5rem !important; text-align: center !important; }
+    footer > div { gap: 1.5rem !important; }
+    footer > div > div:first-child { flex-direction: column !important; align-items: center !important; text-align: center !important; }
+    footer > div > div:first-child > div { text-align: center !important; }
+    footer > div > div:nth-child(2) { gap: 0.875rem 1rem !important; }
 
-    /* Hours ribbon in hero */
-    #hero [style*="position:absolute"][style*="bottom:0"] {
-      gap: 1rem !important;
-      padding: 0.75rem 1.25rem !important;
-      justify-content: flex-start !important;
-      overflow-x: auto !important;
-    }
-
-    /* Hours banner in branches */
-    .hours-banner {
-      flex-direction: column !important;
-      gap: 0.75rem !important;
-      align-items: flex-start !important;
-    }
-
-    /* Background paths — fewer drawn on mobile for performance */
-    .bg-paths-layer { opacity: 0.6; }
-
-    /* Progress ticks — slightly smaller */
-    .doc-tick { width: 14px !important; }
-    .doc-tick.tick-active { width: 28px !important; }
+    /* ── Performance ── */
+    .bg-paths-layer { opacity: 0.5 !important; }
   }
 
   /* ── EXTRA SMALL (≤ 380px) ── */
   @media (max-width: 380px) {
-    #hero h1 { font-size: 2.1rem !important; }
+    .hero-title { font-size: 2.1rem !important; }
     .btn-wa { font-size: 0.75rem !important; }
     .sc-card { width: 190px !important; }
+    .tcard { width: 230px !important; }
+    .tcard[data-pos="1"]  { transform: translateX(120px) translateZ(-70px) scale(0.74) !important; opacity: 0.18 !important; }
+    .tcard[data-pos="-1"] { transform: translateX(-120px) translateZ(-70px) scale(0.74) !important; opacity: 0.18 !important; }
   }
 
 </style>
