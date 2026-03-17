@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shifa Clinic & Surgery — Guiding You To Your Best Life</title>
+  <meta name="description" content="Shifa Clinic & Surgery — Your trusted family clinic across Singapore. Preventive care, health screening, and comprehensive family medicine at 3 locations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --forest:       #1a6b7c;   /* clinical teal */
+      --forest-deep:  #0a3340;   /* deep navy teal */
+      --sage:         #2196a4;   /* mid clinical blue */
+      --sage-light:   #5dbdd4;   /* light teal */
+      --mint:         #aee3ed;   /* pale teal */
+      --gold:         #c9944a;   /* warm CTA accent – kept for contrast */
+      --gold-pale:    #c8edf5;   /* light teal highlight (replaces warm pale) */
+      --gold-dim:     #1a6b7c;   /* teal dim accent */
+      --cream:        #f0f7fa;   /* clinical off-white / light blue-white */
+      --parchment:    #daeef5;   /* slightly deeper clinical tint */
+      --bark:         #061525;   /* very dark navy */
+      --text:         #0d2d3a;   /* dark teal-navy */
+      --text-muted:   #4a7a88;   /* muted teal-grey */
+      --white:        #fefdf9;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
+
+    /* ── TYPOGRAPHY ── */
+    .display { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── HEADER ── */
+    #header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 500;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    #header.scrolled {
+      background: rgba(10,51,64,0.95);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 40px rgba(10,51,64,0.35);
+    }
+
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      line-height: 1.1;
+    }
+    .logo-sub {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-top: 2px;
+    }
+
+    .nav-ctas { display: flex; align-items: center; gap: 0.75rem; }
+
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #25d366; color: #fff;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.03em;
+      border-radius: 2px; text-decoration: none;
+      box-shadow: 0 2px 12px rgba(37,211,102,0.25);
+      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .btn-wa:hover { background: #1fb558; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+    .btn-wa:active { transform: translateY(0); }
+    .btn-wa:focus-visible { outline: 2px solid #25d366; outline-offset: 2px; }
+
+    .btn-tel {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid rgba(240,217,168,0.4);
+      color: var(--gold-pale); background: transparent;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.8rem; font-weight: 400; letter-spacing: 0.03em;
+      border-radius: 2px; text-decoration: none;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-tel:hover { background: rgba(240,217,168,0.1); border-color: rgba(240,217,168,0.6); transform: translateY(-2px); }
+    .btn-tel:active { transform: translateY(0); }
+    .btn-tel:focus-visible { outline: 2px solid var(--gold-pale); outline-offset: 2px; }
+
+    @media (max-width: 640px) { .nav-ctas .btn-tel { display: none; } #header { padding: 1rem 1.25rem; } }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 10% 65%, rgba(33,150,164,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 25%, rgba(201,148,74,0.10) 0%, transparent 45%),
+        radial-gradient(ellipse at 55% 95%, rgba(10,51,64,0.9) 0%, transparent 55%),
+        linear-gradient(155deg, #061525 0%, #0a3340 45%, #1a6b7c 75%, #0a3340 100%);
+    }
+
+    .hero-leaf-1 {
+      position: absolute; top: -5%; right: -4%;
+      width: 480px; height: 480px;
+      opacity: 0.07;
+      animation: leafSway 12s ease-in-out infinite;
+    }
+    .hero-leaf-2 {
+      position: absolute; bottom: -8%; left: -3%;
+      width: 360px; height: 360px;
+      opacity: 0.05;
+      animation: leafSway 9s ease-in-out infinite reverse;
+    }
+
+    @keyframes leafSway {
+      0%,100% { transform: rotate(-4deg) scale(1); }
+      50%      { transform: rotate(4deg) scale(1.03); }
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold-pale); margin-bottom: 1.5rem;
+      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.1s both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #fff;
+      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.25s both;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-pale); }
+    .hero-divider {
+      width: 56px; height: 1.5px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 2rem 0;
+      animation: fadeIn 1s ease 0.5s both;
+    }
+    .hero-tagline {
+      font-size: 1.1rem; font-weight: 300; color: rgba(255,255,255,0.75);
+      max-width: 520px; line-height: 1.6;
+      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+    }
+    .hero-ctas {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem;
+      animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 0.55s both;
+    }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold); color: var(--forest-deep);
+      padding: 0.875rem 2rem;
+      font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em;
+      border-radius: 2px; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(201,148,74,0.35);
+      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .btn-gold:hover { background: var(--gold-pale); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(201,148,74,0.45); }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85);
+      background: transparent;
+      padding: 0.875rem 2rem;
+      font-size: 0.875rem; font-weight: 400; letter-spacing: 0.04em;
+      border-radius: 2px; text-decoration: none;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.55); transform: translateY(-3px); }
+    .btn-outline-white:active { transform: translateY(0); }
+    .btn-outline-white:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.35); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      animation: fadeIn 1.5s ease 1.2s both;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50%      { opacity: 0.8; transform: scaleY(1.2); }
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    .section-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--forest-deep);
+    }
+    .gold-rule {
+      width: 48px; height: 1.5px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.25rem 0;
+    }
+
+    /* ── THE PRACTICE ── */
+    #practice {
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    #practice::before {
+      content: '';
+      position: absolute; top: -120px; right: -80px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(33,150,164,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pillar {
+      background: var(--cream);
+      border: 1px solid rgba(10,51,64,0.08);
+      border-radius: 2px;
+      padding: 2.25rem 2rem;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(10,51,64,0.05);
+    }
+    .pillar:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,148,74,0.25);
+      box-shadow: 0 12px 36px rgba(10,51,64,0.1), 0 0 0 1px rgba(201,148,74,0.15);
+    }
+
+    .pillar-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(10,51,64,0.08), rgba(201,148,74,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── DOCTORS CHARACTER SELECT ── */
+    #doctors { background: var(--forest-deep); }
+
+    .credential-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 1px;
+      margin: 0.2rem 0.2rem 0 0;
+    }
+
+    .doc-selector {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    /* Photo stage */
+    .doc-photo-stage {
+      position: relative;
+      height: 520px;
+      flex-shrink: 0;
+    }
+    /* Decorative gold frame */
+    .doc-photo-stage::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px; right: -16px; bottom: -16px;
+      border: 1px solid rgba(201,148,74,0.2);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .doc-photo-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(0) scale(0.98);
+      filter: blur(5px);
+      transition: opacity 0.58s cubic-bezier(0.22,1,0.36,1), transform 0.58s cubic-bezier(0.22,1,0.36,1), filter 0.58s ease;
+      pointer-events: none;
+      z-index: 1;
+      box-shadow: 0 32px 72px rgba(10,51,64,0.55), 0 0 0 1px rgba(201,148,74,0.15);
+    }
+    .doc-photo-card.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0px);
+      pointer-events: auto;
+    }
+    /* Directional exit classes */
+    .doc-photo-card.exit-fwd {
+      opacity: 0;
+      transform: translateX(-52px) scale(0.96);
+      filter: blur(5px);
+    }
+    .doc-photo-card.exit-bwd {
+      opacity: 0;
+      transform: translateX(52px) scale(0.96);
+      filter: blur(5px);
+    }
+    /* Entrance starting positions (applied without transition, then removed) */
+    .doc-photo-card.from-right {
+      opacity: 0;
+      transform: translateX(52px) scale(0.97);
+      filter: blur(5px);
+    }
+    .doc-photo-card.from-left {
+      opacity: 0;
+      transform: translateX(-52px) scale(0.97);
+      filter: blur(5px);
+    }
+    .doc-photo-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .doc-photo-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,51,64,0.88) 0%, rgba(10,51,64,0.1) 55%);
+    }
+    .doc-photo-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+      z-index: 2;
+    }
+
+    /* Name list */
+    .doc-list-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1.1rem 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: opacity 0.25s ease;
+    }
+    .doc-list-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .doc-list-item:hover { opacity: 1 !important; }
+
+    .doc-list-num {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.2);
+      width: 22px; flex-shrink: 0;
+      transition: color 0.3s ease;
+    }
+    .doc-list-item.ds-active .doc-list-num { color: var(--gold); }
+
+    .doc-list-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.15; letter-spacing: -0.01em;
+      flex: 1;
+      transition: color 0.3s ease, font-size 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .doc-list-item.ds-active .doc-list-name { color: #fff; font-size: 1.6rem; }
+    .doc-list-item:hover:not(.ds-active) .doc-list-name { color: rgba(255,255,255,0.6); }
+
+    .doc-list-arrow {
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.12);
+      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .doc-list-item.ds-active .doc-list-arrow,
+    .doc-list-item:hover .doc-list-arrow {
+      color: var(--gold);
+      transform: translateX(5px);
+    }
+
+    /* Description panel */
+    .doc-desc-panel {
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .doc-desc-inner {
+      transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Progress indicator */
+    .doc-progress {
+      position: absolute;
+      top: 1.25rem; left: 1.5rem; right: 1.5rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .doc-progress-counter {
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      flex-shrink: 0;
+      transition: opacity 0.3s ease;
+    }
+    .doc-ticks {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .doc-tick {
+      height: 2px;
+      width: 18px;
+      border-radius: 1px;
+      background: rgba(255,255,255,0.18);
+      transition: width 0.4s cubic-bezier(0.22,1,0.36,1), background 0.4s ease;
+      cursor: pointer;
+    }
+    .doc-tick.tick-active {
+      width: 36px;
+      background: var(--gold);
+    }
+
+    @media (max-width: 900px) {
+      .doc-selector { grid-template-columns: 1fr; gap: 2.5rem; }
+      .doc-photo-stage { height: 420px; }
+      .doc-photo-stage::before { display: none; }
+    }
+
+    #doctor-modal {
+      position: fixed; inset: 0; z-index: 800;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    #doctor-modal.open { opacity: 1; pointer-events: auto; }
+
+    #doctor-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10,25,18,0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    #doctor-modal-box {
+      position: relative; z-index: 1;
+      background: var(--white);
+      border: 1px solid rgba(201,148,74,0.15);
+      border-radius: 4px;
+      max-width: 640px; width: 100%;
+      max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(10,51,64,0.4), 0 0 0 1px rgba(201,148,74,0.1);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #doctor-modal.open #doctor-modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    #doctor-modal-box::-webkit-scrollbar { width: 4px; }
+    #doctor-modal-box::-webkit-scrollbar-track { background: var(--parchment); }
+    #doctor-modal-box::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 2px; }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--forest-deep), var(--forest));
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+    }
+    .modal-close-btn {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-close-btn:hover { background: rgba(255,255,255,0.2); color: #fff; transform: scale(1.1); }
+    .modal-close-btn:focus-visible { outline: 2px solid var(--gold-pale); outline-offset: 2px; }
+    .modal-close-btn:active { transform: scale(0.95); }
+
+    .modal-avatar-lg {
+      width: 88px; height: 88px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600;
+      border: 3px solid rgba(201,148,74,0.4);
+      box-shadow: 0 6px 24px rgba(10,51,64,0.4);
+      margin-bottom: 1.25rem;
+    }
+    .modal-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+    .modal-bio p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem;
+    }
+    .modal-bio p:last-child { margin-bottom: 0; }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--forest-deep);
+      position: relative; overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(33,150,164,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,148,74,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ── CAROUSEL ── */
+    .carousel-wrapper {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .carousel-track:active { cursor: grabbing; }
+
+    .sc-card {
+      position: relative;
+      width: 270px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 2px;
+      padding: 2rem 1.75rem 1.75rem;
+      margin-right: 1.25rem;
+      overflow: hidden;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .sc-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(201,148,74,0.2);
+    }
+    /* Gold top-accent line */
+    .sc-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--sage-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .sc-card:hover::before { transform: scaleX(1); }
+
+    /* Ghost number */
+    .sc-num {
+      position: absolute; bottom: -0.75rem; right: 0.75rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5.5rem; font-weight: 700; line-height: 1;
+      color: rgba(255,255,255,0.035);
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      transition: color 0.3s ease;
+    }
+    .sc-card:hover .sc-num { color: rgba(201,148,74,0.07); }
+
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(33,150,164,0.2), rgba(201,148,74,0.15));
+      border: 1px solid rgba(201,148,74,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      transition: box-shadow 0.3s ease;
+    }
+    .sc-card:hover .service-icon {
+      box-shadow: 0 0 0 4px rgba(201,148,74,0.08), 0 0 20px rgba(33,150,164,0.2);
+    }
+
+    /* ── BRANCHES ── */
+    #branches { background: var(--white); }
+
+    .branch-card {
+      background: var(--cream);
+      border: 1px solid rgba(10,51,64,0.1);
+      border-radius: 2px;
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(10,51,64,0.05);
+    }
+    .branch-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .branch-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(10,51,64,0.12); border-color: rgba(201,148,74,0.2); }
+    .branch-card:hover::after { height: 100%; }
+
+    .branch-main { border-color: rgba(201,148,74,0.2); }
+    .branch-main::after { height: 100%; background: linear-gradient(to bottom, var(--gold), var(--sage)); }
+
+    .branch-contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; color: var(--sage); text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .branch-contact-link:hover { color: var(--forest); transform: translateX(3px); }
+    .branch-contact-link:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; border-radius: 1px; }
+
+    /* Branch card clickable */
+    .branch-card { cursor: pointer; }
+    .view-map-hint {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.5rem; padding-top: 1rem;
+      border-top: 1px solid rgba(10,51,64,0.08);
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sage);
+      transition: color 0.2s ease, gap 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .branch-card:hover .view-map-hint { color: var(--forest); gap: 0.75rem; }
+
+    /* ── MAP MODAL ── */
+    #map-modal {
+      position: fixed; inset: 0; z-index: 800;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    #map-modal.open { opacity: 1; pointer-events: auto; }
+    #map-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10,25,18,0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    #map-modal-box {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 880px;
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(10,51,64,0.45);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      max-height: 88vh;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #map-modal.open #map-modal-box { transform: translateY(0) scale(1); }
+
+    #map-info-panel {
+      background: var(--forest-deep);
+      padding: 2.25rem 1.75rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative;
+    }
+    #map-info-panel::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, var(--gold), var(--sage));
+    }
+    #map-iframe-wrap {
+      position: relative;
+      min-height: 460px;
+    }
+    #map-iframe-wrap iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    #map-close-btn {
+      position: absolute; top: 1rem; right: 1rem; z-index: 2;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.75); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #map-close-btn:hover { background: rgba(255,255,255,0.22); color: #fff; transform: scale(1.1); }
+    #map-close-btn:active { transform: scale(0.93); }
+    #map-close-btn:focus-visible { outline: 2px solid var(--gold-pale); outline-offset: 2px; }
+
+    @media (max-width: 640px) {
+      #map-modal-box { grid-template-columns: 1fr; }
+      #map-iframe-wrap { min-height: 300px; }
+    }
+
+    /* ── MEDIA ── */
+    #media { background: var(--cream); }
+
+    .video-card {
+      position: relative; overflow: hidden; border-radius: 2px;
+      background: var(--forest-deep);
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(10,51,64,0.2);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    }
+    .video-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 20px 48px rgba(10,51,64,0.32); }
+    .video-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .video-thumb {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover;
+      display: block; opacity: 0.55;
+      transition: opacity 0.3s ease;
+    }
+    .video-card:hover .video-thumb { opacity: 0.4; }
+
+    .video-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,51,64,0.85) 0%, rgba(10,51,64,0.15) 60%);
+    }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(201,148,74,0.9); border: 2px solid rgba(240,217,168,0.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.25s ease;
+    }
+    .video-card:hover .play-circle { transform: scale(1.12); background: var(--gold); }
+
+    .video-meta {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--forest);
+      position: relative; overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 5% 80%, rgba(33,150,164,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 95% 10%, rgba(201,148,74,0.08) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    .form-field {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: #fff;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .form-field:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); box-shadow: 0 0 0 3px rgba(201,148,74,0.15); }
+    .form-field::placeholder { color: rgba(255,255,255,0.35); }
+    .form-field option { background: var(--forest-deep); color: #fff; }
+
+    /* ── PRIVACY ── */
+    #privacy { background: var(--parchment); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest-deep);
+      border-top: 1px solid rgba(201,148,74,0.15);
+    }
+
+    /* ── BACKGROUND PATHS ── */
+    .bg-paths-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-paths-layer svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Light sections need relative + overflow for background paths */
+    #practice, #branches, #media {
+      position: relative;
+      overflow: hidden;
+    }
+    /* Ensure section content sits above the paths layer */
+    #practice > *, #branches > *, #media > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hamburger menu */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .mobile-menu-btn span {
+      display: block; width: 24px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    @media (max-width: 640px) {
+      .mobile-menu-btn { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header id="header">
+  <a href="#" class="logo-text" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+    <img src="logo.png" alt="Shifa Clinic & Surgery logo" style="height:44px; width:auto; object-fit:contain; display:block; flex-shrink:0;">
+    <span>
+      Shifa Clinic &amp; Surgery
+      <span class="logo-sub">Family Medicine · Singapore</span>
+    </span>
+  </a>
+  <nav class="nav-ctas" aria-label="Primary contact">
+    <a class="btn-wa"
+       href="https://api.whatsapp.com/send?phone=6598120565&text=Please%20give%20me%20appt%20for%20Date%2FTime"
+       target="_blank" rel="noopener noreferrer" aria-label="WhatsApp appointment request">
+      <!-- WhatsApp icon -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      WhatsApp Appt
+    </a>
+    <a class="btn-tel" href="tel:62957667" aria-label="Call main clinic">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      62957667
+    </a>
+  </nav>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <!-- Decorative botanical leaves -->
+  <svg class="hero-leaf-1" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M100 10 C140 10, 190 50, 190 100 C190 150, 140 190, 100 190 C60 190, 20 160, 10 120 C0 80, 30 30, 100 10Z" fill="#5dbdd4"/>
+    <path d="M100 10 L100 190" stroke="#3aadc4" stroke-width="2" opacity="0.5"/>
+    <path d="M100 50 C120 60, 150 75, 170 100" stroke="#3aadc4" stroke-width="1.5" opacity="0.4"/>
+    <path d="M100 80 C120 88, 145 100, 165 125" stroke="#3aadc4" stroke-width="1.5" opacity="0.4"/>
+    <path d="M100 50 C80 60, 50 75, 30 100" stroke="#3aadc4" stroke-width="1.5" opacity="0.4"/>
+  </svg>
+  <svg class="hero-leaf-2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M100 10 C140 10, 190 50, 190 100 C190 150, 140 190, 100 190 C60 190, 20 160, 10 120 C0 80, 30 30, 100 10Z" fill="#5dbdd4"/>
+    <path d="M100 10 L100 190" stroke="#3aadc4" stroke-width="2" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-content" style="padding: 8rem 2.5rem 5rem; max-width: min(800px, 90vw); margin: 0 auto;">
+    <span class="hero-label">Shifa · شفاء · Healing</span>
+    <h1 class="hero-title">
+      Guiding You To<br>
+      Your <em>Best Life</em>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">
+      Preventive health is your insurance for a healthy retirement.
+      Our trusted family physicians are here to help you take charge of your wellbeing.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-gold"
+         href="https://api.whatsapp.com/send?phone=6598120565&text=Please%20give%20me%20appt%20for%20Date%2FTime"
+         target="_blank" rel="noopener noreferrer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Book via WhatsApp
+      </a>
+      <a class="btn-outline-white" href="#branches">
+        Find a Branch
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hours ribbon -->
+  <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(10,51,64,0.6); backdrop-filter:blur(8px); border-top:1px solid rgba(201,148,74,0.15); padding:0.875rem 2.5rem; display:flex; align-items:center; justify-content:center; gap:2.5rem; flex-wrap:wrap;">
+    <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.7); font-size:0.8rem; letter-spacing:0.05em;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <strong style="color:#fff;">Mon – Sun</strong>&nbsp;9:00 AM – 7:00 PM
+    </div>
+    <div style="width:1px; height:18px; background:rgba(255,255,255,0.1);"></div>
+    <div style="color:rgba(255,255,255,0.5); font-size:0.8rem;">Closed for lunch 1:00 – 2:00 PM</div>
+    <div style="width:1px; height:18px; background:rgba(255,255,255,0.1);"></div>
+    <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.7); font-size:0.8rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      3 Locations Across Singapore
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════ THE PRACTICE ══════════ -->
+<section id="practice" style="padding: 7rem 2.5rem;">
+  <div class="bg-paths-layer" aria-hidden="true"></div>
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <!-- Intro -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-bottom:5rem;" class="practice-grid">
+      <div class="reveal">
+        <span class="section-label">The Practice</span>
+        <div class="gold-rule"></div>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">Our Health<br><em style="font-style:italic;">Mission</em></h2>
+        <p style="color:var(--text-muted); line-height:1.8; margin-bottom:1.25rem;">
+          We empower patients to take charge of their own health through timely health screening and health education.
+        </p>
+        <p style="color:var(--text-muted); line-height:1.8; margin-bottom:2rem;">
+          Our medical team delivers a high-quality level of customer service, medical experience, and unwavering commitment to the health and wellness of all our patients.
+        </p>
+        <blockquote style="border-left:2px solid var(--gold); padding-left:1.25rem; font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; color:var(--forest); line-height:1.5;">
+          "Preventive Health is your insurance for a Healthy Retirement"
+        </blockquote>
+      </div>
+      <div class="reveal reveal-delay-2" style="position:relative;">
+        <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover; box-shadow:0 24px 64px rgba(10,51,64,0.18);">
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,51,64,0.4) 0%, transparent 60%); border-radius:2px;"></div>
+        <div style="position:absolute; inset:0; mix-blend-mode:multiply; background:rgba(10,51,64,0.1); border-radius:2px;"></div>
+        <!-- Floating badge -->
+        <div style="position:absolute; bottom:-1.5rem; right:-1.5rem; background:var(--gold); color:var(--forest-deep); padding:1.25rem 1.5rem; border-radius:2px; box-shadow:0 8px 24px rgba(201,148,74,0.35);">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600; line-height:1;">30+</div>
+          <div style="font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.25rem;">Years of Care</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 pillars -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;" class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="pillar-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Experience &amp; Professionalism</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">Our medical team assesses each patient thoroughly and creates customised recovery and wellness plans tailored to individual needs.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Preventive Care</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">Beyond treating existing conditions, our doctors implement proactive prevention strategies — maximising your health for the long term.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-3">
+        <div class="pillar-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.75rem;">Patient Education</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.75;">We prioritise teaching patients effective body care techniques so you leave each visit empowered with knowledge, not just treatment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OUR DOCTORS ══════════ -->
+<section id="doctors" style="padding: 7rem 2.5rem; position:relative; overflow:hidden;">
+  <!-- Subtle bg glow -->
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(33,150,164,0.07) 0%, transparent 65%), radial-gradient(ellipse at 80% 20%, rgba(201,148,74,0.05) 0%, transparent 50%); pointer-events:none;"></div>
+
+  <div style="max-width:1100px; margin:0 auto; position:relative;">
+
+    <!-- Section header -->
+    <div style="margin-bottom:4rem;" class="reveal">
+      <span class="section-label" style="color:var(--gold-pale);">Our Physicians</span>
+      <div class="gold-rule"></div>
+      <h2 class="section-title" style="color:#fff;">Meet Our <em style="font-style:italic;">Doctors</em></h2>
+    </div>
+
+    <!-- Character selector detail -->
+    <div class="doc-selector reveal">
+
+      <!-- LEFT: Photo stage -->
+      <div class="doc-photo-stage" aria-live="polite" aria-label="Doctor photo">
+
+        <!-- Progress indicator -->
+        <div class="doc-progress">
+          <span class="doc-progress-counter" id="doc-progress-num">01 / 05</span>
+          <div class="doc-ticks">
+            <div class="doc-tick tick-active" data-idx="0"></div>
+            <div class="doc-tick" data-idx="1"></div>
+            <div class="doc-tick" data-idx="2"></div>
+            <div class="doc-tick" data-idx="3"></div>
+            <div class="doc-tick" data-idx="4"></div>
+          </div>
+        </div>
+
+        <!-- Dr Mohamed Ghazali -->
+        <div class="doc-photo-card active" id="dp-ghazali">
+          <img src="Dr Mohamed Ghazali.webp" alt="Dr Mohamed Ghazali">
+          <div class="doc-photo-label">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:#fff; line-height:1.1; letter-spacing:-0.02em;">Dr Mohamed<br>Ghazali</h3>
+          </div>
+        </div>
+
+        <!-- Dr Mohamed Baisal -->
+        <div class="doc-photo-card" id="dp-baisal">
+          <img src="Dr Mohamed Baisal.webp" alt="Dr Mohamed Baisal">
+          <div class="doc-photo-label">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:#fff; line-height:1.1; letter-spacing:-0.02em;">Dr Mohamed<br>Baisal</h3>
+          </div>
+        </div>
+
+        <!-- Dr Mogilan -->
+        <div class="doc-photo-card" id="dp-mogilan">
+          <img src="Dr Mogilan so Mohan.webp" alt="Dr Mogilan s/o Mohan" style="object-position: center top;">
+          <div class="doc-photo-label">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:#fff; line-height:1.1; letter-spacing:-0.02em;">Dr Mogilan<br>s/o Mohan</h3>
+          </div>
+        </div>
+
+        <!-- Dr Siti Sarina -->
+        <div class="doc-photo-card" id="dp-sarina">
+          <img src="Dr Siti Sarina.webp" alt="Dr Siti Sarina">
+          <div class="doc-photo-label">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:#fff; line-height:1.1; letter-spacing:-0.02em;">Dr Siti<br>Sarina</h3>
+          </div>
+        </div>
+
+        <!-- Dr Murali Dharan -->
+        <div class="doc-photo-card" id="dp-murali">
+          <img src="Dr Murali Dharan.webp" alt="Dr Murali Dharan">
+          <div class="doc-photo-label">
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:#fff; line-height:1.1; letter-spacing:-0.02em;">Dr Murali<br>Dharan</h3>
+          </div>
+        </div>
+
+      </div><!-- /photo stage -->
+
+      <!-- RIGHT: Name roster + description -->
+      <div>
+
+        <!-- Name list -->
+        <div role="listbox" aria-label="Select a doctor">
+
+          <div class="doc-list-item ds-active" role="option" aria-selected="true" tabindex="0" data-key="ghazali"
+               onclick="selectDoctor('ghazali')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDoctor('ghazali')}">
+            <span class="doc-list-num">01</span>
+            <span class="doc-list-name">Dr Mohamed Ghazali</span>
+            <svg class="doc-list-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+
+          <div class="doc-list-item" role="option" aria-selected="false" tabindex="0" data-key="baisal"
+               onclick="selectDoctor('baisal')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDoctor('baisal')}">
+            <span class="doc-list-num">02</span>
+            <span class="doc-list-name">Dr Mohamed Baisal</span>
+            <svg class="doc-list-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+
+          <div class="doc-list-item" role="option" aria-selected="false" tabindex="0" data-key="mogilan"
+               onclick="selectDoctor('mogilan')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDoctor('mogilan')}">
+            <span class="doc-list-num">03</span>
+            <span class="doc-list-name">Dr Mogilan s/o Mohan</span>
+            <svg class="doc-list-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+
+          <div class="doc-list-item" role="option" aria-selected="false" tabindex="0" data-key="sarina"
+               onclick="selectDoctor('sarina')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDoctor('sarina')}">
+            <span class="doc-list-num">04</span>
+            <span class="doc-list-name">Dr Siti Sarina</span>
+            <svg class="doc-list-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+
+          <div class="doc-list-item" role="option" aria-selected="false" tabindex="0" data-key="murali"
+               onclick="selectDoctor('murali')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDoctor('murali')}">
+            <span class="doc-list-num">05</span>
+            <span class="doc-list-name">Dr Murali Dharan</span>
+            <svg class="doc-list-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+
+        </div>
+
+        <!-- Description panel -->
+        <div class="doc-desc-panel">
+          <div class="doc-desc-inner" id="doc-desc-inner">
+            <!-- Populated by JS on load -->
+          </div>
+        </div>
+
+      </div><!-- /right -->
+    </div><!-- /doc-selector -->
+  </div>
+</section>
+
+<!-- ══════════ OUR SERVICES ══════════ -->
+<section id="services" style="padding:7rem 0; overflow:hidden; position:relative;">
+
+  <!-- Header -->
+  <div style="max-width:1100px; margin:0 auto; padding:0 2.5rem; text-align:center; margin-bottom:3.5rem;" class="reveal">
+    <span class="section-label" style="color:var(--gold-pale);">What We Offer</span>
+    <div class="gold-rule" style="margin:1.25rem auto;"></div>
+    <h2 class="section-title" style="color:#fff;">Our <em style="font-style:italic;">Services</em></h2>
+    <p style="color:rgba(255,255,255,0.3); margin-top:0.875rem; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;">Drag to explore &nbsp;·&nbsp; Hover to pause</p>
+  </div>
+
+  <!-- Row — scrolls LEFT -->
+  <div class="carousel-wrapper" id="wrapper-1">
+    <div class="carousel-track" id="carousel-1">
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">01</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">General Practice</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Comprehensive consultations and treatment for everyday health needs, illnesses, and injuries.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">02</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Health Screening</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Preventive screenings and check-ups tailored to your age, lifestyle, and risk profile.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">03</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Preventive Care</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Proactive strategies and lifestyle counselling to maintain and maximise your long-term wellbeing.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">04</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Occupational Medicine</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Workplace health assessments, fitness-to-work evaluations, and work-related condition management.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">05</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Paediatrics</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Dedicated and compassionate care for infants, children, and adolescents at every stage of growth.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">06</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Women's Health</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Holistic and sensitive care for women at every stage of life, from reproductive health to menopause.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">07</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 3-3-6-3 6-3-3H2"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Vaccinations</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Full range of immunisations for children and adults, including travel vaccines and flu shots.</p>
+      </div>
+
+      <div class="sc-card"><span class="sc-num" aria-hidden="true">08</span>
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:0.625rem;">Chronic Disease Management</h3>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">Ongoing support and monitoring for diabetes, hypertension, high cholesterol, and other long-term conditions.</p>
+      </div>
+
+    </div><!-- /#carousel-1 -->
+  </div>
+
+
+</section>
+
+<!-- ══════════ OUR BRANCHES ══════════ -->
+<section id="branches" style="padding: 7rem 2.5rem;">
+  <div class="bg-paths-layer" aria-hidden="true"></div>
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
+      <span class="section-label">Find Us</span>
+      <div class="gold-rule" style="margin:1.25rem auto;"></div>
+      <h2 class="section-title">Our <em style="font-style:italic;">Branches</em></h2>
+      <p style="color:var(--text-muted); margin-top:1rem; font-size:0.95rem;">Three convenient locations across Singapore, open every day of the week.</p>
+    </div>
+
+    <!-- Hours banner -->
+    <div class="reveal" style="background:var(--forest); border-radius:2px; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; box-shadow:0 4px 20px rgba(10,51,64,0.15);">
+      <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.85); font-size:0.875rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-pale)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <strong style="color:#fff;">Opening Hours</strong>
+      </div>
+      <div style="color:rgba(255,255,255,0.7); font-size:0.875rem;">Monday – Sunday: <strong style="color:#fff;">9:00 AM – 7:00 PM</strong></div>
+      <div style="color:rgba(255,255,255,0.45); font-size:0.875rem;">Lunch break: 1:00 PM – 2:00 PM (closed)</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem;">
+
+      <!-- Main Branch -->
+      <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Chander Road branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}" style="outline:none;">
+        <div style="display:flex; align-items:center; gap:0.625rem; margin-bottom:1.5rem;">
+          <span style="background:var(--gold); color:var(--forest-deep); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Main Clinic</span>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Chander Road</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">668 Chander Rd, #01-20<br>Singapore 210668</p>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <a class="branch-contact-link" href="tel:62957667">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Tel: 6295 7667
+          </a>
+          <a class="branch-contact-link" href="https://api.whatsapp.com/send?phone=6598120565&text=Please%20give%20me%20appt%20for%20Date%2FTime" target="_blank" rel="noopener noreferrer" style="color:#25d366;" onclick="event.stopPropagation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp: 9812 0565
+          </a>
+        </div>
+        <div class="view-map-hint">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          View on Map
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Jurong Branch -->
+      <div class="branch-card reveal reveal-delay-2" onclick="openMapModal('jurong')" tabindex="0" role="button" aria-label="View Jurong branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('jurong')}" style="outline:none;">
+        <div style="margin-bottom:1.5rem;">
+          <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Jurong West</span>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Jurong Branch</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">463 Jurong West Street 41, #01-558<br>Singapore 640463</p>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <a class="branch-contact-link" href="tel:64698941">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Tel: 6469 8941
+          </a>
+          <a class="branch-contact-link" href="https://api.whatsapp.com/send?phone=6598907095&text=Please%20give%20me%20appt%20for%20Date%2FTime" target="_blank" rel="noopener noreferrer" style="color:#25d366;" onclick="event.stopPropagation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp: 9890 7095
+          </a>
+        </div>
+        <div class="view-map-hint">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          View on Map
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Tampines Branch -->
+      <div class="branch-card reveal reveal-delay-4" onclick="openMapModal('tampines')" tabindex="0" role="button" aria-label="View Tampines branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('tampines')}" style="outline:none;">
+        <div style="margin-bottom:1.5rem;">
+          <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Tampines</span>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Tampines Branch</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">138 Tampines Street 11, #01-126<br>Singapore 521138</p>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <a class="branch-contact-link" href="tel:67816694">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Tel: 6781 6694
+          </a>
+          <a class="branch-contact-link" href="https://api.whatsapp.com/send?phone=6587303670&text=Please%20give%20me%20appt%20for%20Date%2FTime" target="_blank" rel="noopener noreferrer" style="color:#25d366;" onclick="event.stopPropagation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp: 8730 3670
+          </a>
+        </div>
+        <div class="view-map-hint">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          View on Map
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MAP MODAL ══════════ -->
+<div id="map-modal" role="dialog" aria-modal="true" aria-labelledby="map-modal-title">
+  <div id="map-modal-backdrop" onclick="closeMapModal()"></div>
+  <div id="map-modal-box">
+
+    <!-- Left info panel -->
+    <div id="map-info-panel">
+      <button id="map-close-btn" onclick="closeMapModal()" aria-label="Close map">&#x2715;</button>
+      <div>
+        <span id="map-branch-tag" style="font-size:0.65rem; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-pale);"></span>
+        <h3 id="map-modal-title" style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:#fff; margin:0.5rem 0 0.375rem; line-height:1.15;"></h3>
+        <p id="map-branch-addr" style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6; margin-bottom:1.75rem;"></p>
+
+        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem;" id="map-branch-contacts"></div>
+
+        <a id="map-directions-link" href="#" target="_blank" rel="noopener noreferrer"
+           style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--forest-deep);
+                  padding:0.75rem 1.25rem; border-radius:2px; text-decoration:none;
+                  font-size:0.8rem; font-weight:600; letter-spacing:0.04em;
+                  box-shadow:0 4px 16px rgba(201,148,74,0.3);
+                  transition:background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);"
+           onmouseover="this.style.background='var(--gold-pale)'; this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='var(--gold)'; this.style.transform='translateY(0)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Get Directions
+        </a>
+      </div>
+
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.25); margin-top:2rem; line-height:1.6;">
+        Mon – Sun &nbsp;·&nbsp; 9:00 AM – 7:00 PM<br>Closed 1:00 – 2:00 PM (lunch)
+      </p>
+    </div>
+
+    <!-- Right: map iframe -->
+    <div id="map-iframe-wrap">
+      <iframe id="map-iframe" src="" title="Branch location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ MEDIA POSTS ══════════ -->
+<section id="media" style="padding: 7rem 2.5rem;">
+  <div class="bg-paths-layer" aria-hidden="true"></div>
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
+      <span class="section-label">In the News</span>
+      <div class="gold-rule" style="margin:1.25rem auto;"></div>
+      <h2 class="section-title">Media <em style="font-style:italic;">Appearances</em></h2>
+      <p style="color:var(--text-muted); margin-top:1rem; font-size:0.95rem;">Our doctors share their expertise on healthcare and preventive medicine.</p>
+    </div>
+
+    <!-- Single centred card -->
+    <div style="max-width:640px; margin:0 auto;">
+      <div class="video-card reveal" tabindex="0" role="button" aria-label="Watch: Managing Medicines While Fasting" onclick="openVideoModal()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVideoModal()}">
+        <!-- YouTube thumbnail -->
+        <img src="https://img.youtube.com/vi/VXs0ld7OrR4/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/VXs0ld7OrR4/hqdefault.jpg'"
+             alt="Managing Medicines While Fasting thumbnail" class="video-thumb" style="opacity:0.7;">
+        <div class="video-overlay"></div>
+        <div class="video-play">
+          <div class="play-circle" style="width:72px; height:72px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span style="font-size:0.65rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-pale);">#NurulHudaPodcast</span>
+          <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:500; color:#fff; margin-top:0.5rem; line-height:1.25;">Managing Medicines While Fasting</h4>
+          <p style="margin-top:0.5rem; font-size:0.8rem; color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:0.375rem;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/><rect x="3" y="3" width="18" height="18" rx="2" ry="2" style="display:none"/></svg>
+            Click to watch
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ VIDEO MODAL ══════════ -->
+<div id="video-modal" role="dialog" aria-modal="true" aria-label="Watch: Managing Medicines While Fasting"
+     style="position:fixed; inset:0; z-index:900; display:flex; align-items:center; justify-content:center; padding:1.5rem;
+            opacity:0; pointer-events:none; transition:opacity 0.3s cubic-bezier(0.4,0,0.2,1);">
+  <div onclick="closeVideoModal()"
+       style="position:absolute; inset:0; background:rgba(5,18,12,0.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"></div>
+  <div id="video-modal-box" style="position:relative; z-index:1; width:100%; max-width:560px;
+       background:var(--forest-deep); border:1px solid rgba(201,148,74,0.15); border-radius:4px;
+       overflow:hidden; box-shadow:0 32px 80px rgba(5,18,12,0.7);
+       transform:translateY(20px) scale(0.96); transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);">
+
+    <!-- Thumbnail -->
+    <div style="position:relative; width:100%;">
+      <img src="https://img.youtube.com/vi/VXs0ld7OrR4/maxresdefault.jpg"
+           onerror="this.src='https://img.youtube.com/vi/VXs0ld7OrR4/hqdefault.jpg'"
+           alt="Managing Medicines While Fasting thumbnail"
+           style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; opacity:0.55;">
+      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,51,64,0.95) 0%, rgba(10,51,64,0.2) 60%);"></div>
+      <!-- YouTube logo watermark -->
+      <div style="position:absolute; top:1rem; left:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <svg height="18" viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M27.9 3.2A3.4 3.4 0 0 0 25.5.8C23.3.2 14.3.2 14.3.2S5.3.2 3.1.8A3.4 3.4 0 0 0 .7 3.2C.1 5.4.1 10 .1 10s0 4.6.6 6.8a3.4 3.4 0 0 0 2.4 2.4c2.2.6 11.2.6 11.2.6s9 0 11.2-.6a3.4 3.4 0 0 0 2.4-2.4c.6-2.2.6-6.8.6-6.8s0-4.6-.6-6.8z" fill="#FF0000"/>
+          <path d="M11.4 14.3V5.7l7.5 4.3-7.5 4.3z" fill="#fff"/>
+        </svg>
+        <span style="font-size:0.65rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.5);">YouTube</span>
+      </div>
+    </div>
+
+    <!-- Info + CTA -->
+    <div style="padding:1.75rem 2rem 2rem;">
+      <span style="font-size:0.65rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-pale);">#NurulHudaPodcast</span>
+      <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:500; color:#fff; margin:0.5rem 0 0.25rem; line-height:1.25;">Managing Medicines While Fasting</h3>
+      <p style="font-size:0.82rem; color:rgba(255,255,255,0.45); margin-bottom:1.5rem; line-height:1.6;">
+        This video is hosted on YouTube. Click below to watch it — it will open in a new tab.
+      </p>
+      <div style="display:flex; gap:0.75rem; align-items:center;">
+        <a href="https://www.youtube.com/watch?v=VXs0ld7OrR4&t=239s"
+           target="_blank" rel="noopener noreferrer"
+           style="display:inline-flex; align-items:center; gap:0.625rem; background:#FF0000; color:#fff;
+                  padding:0.75rem 1.5rem; border-radius:2px; text-decoration:none;
+                  font-size:0.875rem; font-weight:600; letter-spacing:0.03em;
+                  box-shadow:0 4px 16px rgba(255,0,0,0.3);
+                  transition:background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;"
+           onmouseover="this.style.background='#cc0000'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(255,0,0,0.4)'"
+           onmouseout="this.style.background='#FF0000'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(255,0,0,0.3)'"
+           onmousedown="this.style.transform='translateY(0)'"
+           onfocus="this.style.outline='2px solid #FF0000'; this.style.outlineOffset='3px'"
+           onblur="this.style.outline='none'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch on YouTube
+        </a>
+        <button onclick="closeVideoModal()" aria-label="Close"
+                style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.6);
+                       padding:0.75rem 1.25rem; border-radius:2px; cursor:pointer;
+                       font-size:0.85rem; font-family:'DM Sans',sans-serif;
+                       transition:background 0.2s ease, color 0.2s ease;"
+                onmouseover="this.style.background='rgba(255,255,255,0.14)'; this.style.color='#fff'"
+                onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.6)'"
+                onfocus="this.style.outline='2px solid rgba(255,255,255,0.4)'; this.style.outlineOffset='2px'"
+                onblur="this.style.outline='none'">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" style="padding: 7rem 2.5rem;">
+  <div style="max-width: 1100px; margin: 0 auto; position:relative; z-index:1;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;" class="contact-grid">
+
+      <!-- Left: info -->
+      <div class="reveal">
+        <span class="section-label" style="color:var(--gold-pale);">Get In Touch</span>
+        <div class="gold-rule"></div>
+        <h2 class="section-title" style="color:#fff; margin-bottom:1.5rem;">Contact <em style="font-style:italic;">Us</em></h2>
+        <p style="color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:2.5rem;">
+          Reach out via WhatsApp for the fastest response. We'll confirm your appointment promptly.
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div>
+            <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-pale); margin-bottom:0.5rem;">Main Clinic (Chander Road)</p>
+            <a href="tel:62957667" style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:0.9rem; display:flex; align-items:center; gap:0.5rem; transition:color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              6295 7667
+            </a>
+          </div>
+
+          <div style="height:1px; background:rgba(255,255,255,0.08);"></div>
+
+          <div>
+            <p style="font-size:0.72rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-pale); margin-bottom:0.75rem;">Book via WhatsApp</p>
+            <div style="display:flex; flex-direction:column; gap:0.625rem;">
+              <a href="https://api.whatsapp.com/send?phone=6598120565&text=Please%20give%20me%20appt%20for%20Date%2FTime" target="_blank" rel="noopener noreferrer" style="color:#a8f0c6; text-decoration:none; font-size:0.875rem; display:flex; align-items:center; gap:0.5rem; transition:color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a8f0c6'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Main: 9812 0565
+              </a>
+              <a href="https://api.whatsapp.com/send?phone=6598907095&text=Please%20give%20me%20appt%20for%20Date%2FTime" target="_blank" rel="noopener noreferrer" style="color:#a8f0c6; text-decoration:none; font-size:0.875rem; display:flex; align-items:center; gap:0.5rem; transition:color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a8f0c6'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Jurong: 9890 7095
+              </a>
+              <a href="https://api.whatsapp.com/send?phone=6587303670&text=Please%20give%20me%20appt%20for%20Date%2FTime" target="_blank" rel="noopener noreferrer" style="color:#a8f0c6; text-decoration:none; font-size:0.875rem; display:flex; align-items:center; gap:0.5rem; transition:color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a8f0c6'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Tampines: 8730 3670
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="reveal reveal-delay-2">
+        <form style="display:flex; flex-direction:column; gap:1rem;" onsubmit="handleFormSubmit(event)">
+          <div>
+            <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;" for="contact-name">Full Name</label>
+            <input class="form-field" type="text" id="contact-name" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;" for="contact-email">Email Address</label>
+            <input class="form-field" type="email" id="contact-email" name="email" placeholder="your@email.com" required autocomplete="email">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;" for="contact-phone">Phone Number</label>
+            <input class="form-field" type="tel" id="contact-phone" name="phone" placeholder="+65 XXXX XXXX" autocomplete="tel">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;" for="contact-branch">Preferred Branch</label>
+            <select class="form-field" id="contact-branch" name="branch">
+              <option value="">Select a branch</option>
+              <option value="chander">Chander Road (Main)</option>
+              <option value="jurong">Jurong West</option>
+              <option value="tampines">Tampines</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;" for="contact-message">Message</label>
+            <textarea class="form-field" id="contact-message" name="message" rows="4" placeholder="How can we help you?" style="resize:vertical;"></textarea>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.5rem;" for="contact-file">Attach File (optional)</label>
+            <input class="form-field" type="file" id="contact-file" name="file" style="padding:0.625rem 1rem; cursor:pointer;">
+          </div>
+          <button type="submit" class="btn-gold" style="width:100%; justify-content:center; margin-top:0.5rem; cursor:pointer; border:none; font-size:0.9rem;">
+            Send Message
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+        <div id="form-success" style="display:none; text-align:center; padding:2rem; background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.25); border-radius:2px; margin-top:1rem;">
+          <p style="color:#a8f0c6; font-family:'Cormorant Garamond',serif; font-size:1.2rem;">Message sent! We'll be in touch shortly.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRIVACY ══════════ -->
+<section id="privacy" style="padding: 4rem 2.5rem;">
+  <div style="max-width:1100px; margin:0 auto; text-align:center;" class="reveal">
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:500; color:var(--text); margin-bottom:0.75rem;">Personal Data Protection &amp; Privacy</h3>
+    <p style="font-size:0.875rem; color:var(--text-muted); max-width:520px; margin:0 auto 1.25rem;">
+      We are committed to protecting your personal data in accordance with Singapore's PDPA.
+    </p>
+    <a href="Shifa Clinic Privacy Statement_final_10042024.pdf"
+       target="_blank" rel="noopener noreferrer"
+       style="display:inline-flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--forest); text-decoration:none; border:1px solid rgba(10,51,64,0.2); padding:0.625rem 1.25rem; border-radius:2px; transition:background 0.2s ease, border-color 0.2s ease;"
+       onmouseover="this.style.background='rgba(10,51,64,0.06)'; this.style.borderColor='rgba(10,51,64,0.35)';"
+       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(10,51,64,0.2)';">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Download Privacy Statement (PDF)
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer style="padding: 3rem 2.5rem;">
+  <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+    <div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:#fff; margin-bottom:0.25rem;">Shifa Clinic &amp; Surgery</p>
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">Guiding You To Your Best Life</p>
+    </div>
+    <div style="text-align:center;">
+      <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-bottom:0.75rem;">
+        <a href="#practice" style="font-size:0.8rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">The Practice</a>
+        <a href="#doctors" style="font-size:0.8rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Our Doctors</a>
+        <a href="#services" style="font-size:0.8rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Services</a>
+        <a href="#branches" style="font-size:0.8rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Branches</a>
+        <a href="#contact" style="font-size:0.8rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Contact</a>
+        <a href="#privacy" style="font-size:0.8rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s ease;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Privacy</a>
+      </div>
+    </div>
+    <p style="font-size:0.75rem; color:rgba(255,255,255,0.3);">© 2024 Shifa Clinic &amp; Surgery. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ══════════ DOCTOR MODAL ══════════ -->
+<div id="doctor-modal" role="dialog" aria-modal="true" aria-labelledby="modal-doctor-name">
+  <div id="doctor-modal-backdrop" onclick="closeDoctorModal()"></div>
+  <div id="doctor-modal-box">
+    <div class="modal-header">
+      <button class="modal-close-btn" onclick="closeDoctorModal()" aria-label="Close">&#x2715;</button>
+      <div id="modal-avatar" class="modal-avatar-lg"></div>
+      <h2 id="modal-doctor-name" style="font-family:'Cormorant Garamond',serif; font-size:1.75rem; font-weight:600; color:#fff; letter-spacing:-0.02em; margin-bottom:0.25rem;"></h2>
+      <p id="modal-credentials" style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:1.25rem;"></p>
+      <div id="modal-tags" style="display:flex; flex-wrap:wrap; gap:0.375rem;"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-bio" id="modal-bio"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ RESPONSIVE GRID FIXES ══════════ -->
+<style>
+  @media (max-width: 768px) {
+    .practice-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    .pillars-grid  { grid-template-columns: 1fr !important; }
+    .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  }
+</style>
+
+<!-- ══════════ JAVASCRIPT ══════════ -->
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Intersection observer for reveal animations
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        observer.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Form submit handler
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  // Video card keyboard accessibility
+  document.querySelectorAll('.video-card[role="link"]').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+
+  // ── DOCTOR MODAL DATA ──
+  const DOCTORS = {
+    ghazali: {
+      name: 'Dr Mohamed Ghazali',
+      credentials: 'MBBS (NUS), Dip Occupational Medicine, Dip Family Medicine',
+      avatar: 'MG',
+      avatarBg: 'linear-gradient(135deg,#aee3ed,#2196a4)',
+      tags: ['NUS 1991', 'A&E · Ortho · Gen Med', 'Occupational Medicine', 'Family Medicine', 'MHPA Founding Member'],
+      bio: [
+        'Dr Mohamed Ghazali did his pre-university education at Raffles Institution and Raffles Junior College. He obtained his MBBS degree from the National University of Singapore in 1991.',
+        'His medical officer training was conducted at various hospitals including Singapore General Hospital, with postings in the Accident & Emergency Department, Anaesthesia Department, Orthopaedic Department, and General Medicine and Surgery.',
+        'He served National Service as a Medical Platoon Commander in the Singapore Civil Defence Force. He subsequently worked as the Resident Medical Officer at Mount Alvernia Hospital, where he was responsible for cases at the 24-hour A&E clinic and managed emergencies arising in the Intensive Care Unit and General Ward.',
+        'Dr Ghazali completed his Postgraduate Diploma in Occupational Medicine in 2000 and Diploma in Family Medicine in 2003, both at the National University of Singapore.',
+        'Dr Ghazali is a founding member of the Muslim Healthcare Professionals Association (MHPA), formed in 2004. His previous appointments include Assistant Secretary (2004–2006), Secretary (2006–2008), President (2008–2011), and Vice President (2012–2020).'
+      ]
+    },
+    baisal: {
+      name: 'Dr Mohamed Baisal',
+      credentials: 'MBBS (NUS)',
+      avatar: 'MB',
+      avatarBg: 'linear-gradient(135deg,#d8f3dc,#95d5b2)',
+      tags: ['NUS 2004', 'Hajj Medical Mission', 'MUIS'],
+      bio: [
+        'Dr Baisal graduated from the National University of Singapore in 2004. He is married with two children and greatly enjoys his time caring for patients at the clinic.',
+        'He is actively involved with the MUIS Hajj Medical Mission and has accompanied the team during Hajj 2011, contributing his medical expertise to the pilgrimage community.'
+      ]
+    },
+    mogilan: {
+      name: 'Dr Mogilan s/o Mohan',
+      credentials: 'MBBS (NUS), Grad Dip Family Medicine, Registered Family Physician (SMC)',
+      avatar: 'MM',
+      avatarBg: 'linear-gradient(135deg,#c8edf5,#1a6b7c)',
+      tags: ['NUS 2010', 'Internal Medicine Residency', 'Grad Dip Fam Med 2018', 'Registered FP 2019', 'COVID Commendation Medal 2023', 'English · Tamil'],
+      bio: [
+        'Dr Mogilan s/o Mohan has over a decade of experience working as a doctor. He is fluent in both English and Tamil.',
+        'An alumnus of Raffles Institution and Raffles Junior College, Dr Mogilan graduated from the National University of Singapore in 2010.',
+        'He subsequently completed the Internal Medicine Residency Program with National Healthcare Group in 2015, during which he undertook postings in Emergency Medicine, Geriatric Medicine, Neurology, Rheumatology, Intensive Care, Haematology, Dermatology, Endocrinology, Cardiology, Respiratory Medicine, General Medicine, and General Surgery at Tan Tock Seng Hospital and Khoo Teck Puat Hospital.',
+        'Dr Mogilan worked at Yishun Polyclinic under National Healthcare Group Polyclinics from 2016 to 2023. He completed his Graduate Diploma in Family Medicine in 2018 and has been a registered Family Physician with the Singapore Medical Council since 2019.',
+        'He was awarded the Commendation Medal / Pingat Kepujian in 2023 in recognition of his outstanding contributions during the COVID-19 Pandemic.'
+      ]
+    },
+    sarina: {
+      name: 'Dr Siti Sarina',
+      credentials: 'MBBS (Duke-NUS), Grad Dip Family Medicine (NUS)',
+      avatar: 'SS',
+      avatarBg: 'linear-gradient(135deg,#e8f4ea,#95d5b2)',
+      tags: ['Duke-NUS 2011', 'SGH · KKH · KTPH', 'Bedok Polyclinic', 'Grad Dip Fam Med 2019', "Women's Health"],
+      bio: [
+        'Dr Siti Sarina graduated from Duke-NUS Medical School in 2011. She completed various clinical postings at Singapore General Hospital, KK Women\'s and Children\'s Hospital, and Khoo Teck Puat Hospital.',
+        'She subsequently worked at Bedok Polyclinic for five years, developing strong expertise in community and family medicine.',
+        'In 2019, she completed her Graduate Diploma in Family Medicine from the National University of Singapore.',
+        'Dr Sarina then moved abroad and worked as a general practitioner at a private practice in Masterton, New Zealand. Upon returning to Singapore, she continues to work in private practice as a family physician.'
+      ]
+    },
+    murali: {
+      name: 'Dr Murali Dharan',
+      credentials: 'MBBS (NUS), Dip Family Medicine (NUS)',
+      avatar: 'MD',
+      avatarBg: 'linear-gradient(135deg,#aee3ed,#0a3340)',
+      tags: ['NUS 1990', '20+ Years Family Physician', '10 Years Private Practice', 'Paediatrics'],
+      bio: [
+        'Dr Murali Dharan graduated from the National University of Singapore in 1990. He completed his Postgraduate Diploma in Family Medicine in 2003 at the National University of Singapore.',
+        'He has been a family physician for more than 20 years, gaining vast experience through medical attachments at various hospitals across Singapore.',
+        'Dr Murali has been in private practice for the past 10 years. He is able to provide thorough advice and treatment across all aspects of general medicine, with a keen special interest in paediatrics.'
+      ]
+    }
+  };
+
+  // ── MODAL FUNCTIONS ──
+  const modal = document.getElementById('doctor-modal');
+  let lastFocused = null;
+
+  function openDoctorModal(key) {
+    const doc = DOCTORS[key];
+    if (!doc) return;
+
+    // Save focus origin
+    lastFocused = document.activeElement;
+
+    // Populate modal
+    const avatar = document.getElementById('modal-avatar');
+    avatar.textContent = doc.avatar;
+    avatar.style.background = doc.avatarBg;
+    avatar.style.color = '#0a3340';
+
+    document.getElementById('modal-doctor-name').textContent = doc.name;
+    document.getElementById('modal-credentials').textContent = doc.credentials;
+
+    const tagsEl = document.getElementById('modal-tags');
+    tagsEl.innerHTML = doc.tags.map(t =>
+      `<span style="display:inline-block; font-size:0.7rem; font-weight:400; letter-spacing:0.06em; color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.12); padding:0.2rem 0.6rem; border-radius:1px;">${t}</span>`
+    ).join('');
+
+    const bioEl = document.getElementById('modal-bio');
+    bioEl.innerHTML = doc.bio.map(p => `<p>${p}</p>`).join('');
+
+    // Show modal
+    document.getElementById('doctor-modal-box').scrollTop = 0;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Focus close button
+    setTimeout(() => {
+      const closeBtn = modal.querySelector('.modal-close-btn');
+      if (closeBtn) closeBtn.focus();
+    }, 50);
+  }
+
+  function closeDoctorModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  // ESC key closes doctor + video modals
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (modal.classList.contains('open')) closeDoctorModal();
+      if (document.getElementById('video-modal').style.pointerEvents === 'auto') closeVideoModal();
+    }
+  });
+
+  // ── DOCTOR CHARACTER SELECT ──
+  let activeDocKey = 'ghazali';
+
+  function renderDocDesc(key) {
+    const doc = DOCTORS[key];
+    return `
+      <p style="font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-pale); margin-bottom:0.625rem;">${doc.credentials}</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.3rem; margin-bottom:1.25rem;">
+        ${doc.tags.map(t => `<span class="credential-tag">${t}</span>`).join('')}
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+        ${doc.bio.slice(0, 2).map(p => `<p style="font-size:0.875rem; color:rgba(255,255,255,0.5); line-height:1.8;">${p}</p>`).join('')}
+      </div>
+    `;
+  }
+
+  const DOC_ORDER = ['ghazali', 'baisal', 'mogilan', 'sarina', 'murali'];
+
+  function selectDoctor(key) {
+    if (key === activeDocKey) return;
+
+    const prevIdx = DOC_ORDER.indexOf(activeDocKey);
+    const nextIdx = DOC_ORDER.indexOf(key);
+    const goFwd   = nextIdx > prevIdx;
+
+    // Exit current card in the correct direction
+    const prev = document.getElementById('dp-' + activeDocKey);
+    prev.classList.remove('active');
+    prev.classList.add(goFwd ? 'exit-fwd' : 'exit-bwd');
+    setTimeout(() => prev.classList.remove('exit-fwd', 'exit-bwd'), 620);
+
+    // Position incoming card at its starting offset (skip transition)
+    const next = document.getElementById('dp-' + key);
+    next.style.transition = 'none';
+    next.classList.add(goFwd ? 'from-right' : 'from-left');
+    // Force reflow so the browser registers the starting position
+    next.getBoundingClientRect();
+    // Re-enable transition and animate to fully visible
+    next.style.transition = '';
+    next.classList.remove('from-right', 'from-left');
+    next.classList.add('active');
+
+    // Update name roster
+    document.querySelectorAll('.doc-list-item').forEach(el => {
+      const isActive = el.dataset.key === key;
+      el.classList.toggle('ds-active', isActive);
+      el.setAttribute('aria-selected', String(isActive));
+    });
+
+    // Slide description in the same direction as the photo
+    const inner = document.getElementById('doc-desc-inner');
+    const slideOut = goFwd ? '-22px' : '22px';
+    const slideIn  = goFwd ?  '22px' : '-22px';
+    inner.style.transition = 'none';
+    inner.style.opacity   = '0';
+    inner.style.transform = `translateX(${slideOut})`;
+    inner.getBoundingClientRect();
+    inner.style.transition = 'opacity 0.42s ease, transform 0.48s cubic-bezier(0.22,1,0.36,1)';
+    setTimeout(() => {
+      inner.innerHTML       = renderDocDesc(key);
+      inner.style.transform = `translateX(${slideIn})`;
+      inner.getBoundingClientRect();
+      inner.style.transform = 'translateX(0)';
+      inner.style.opacity   = '1';
+    }, 180);
+
+    // Update progress indicator
+    const pad = n => n < 10 ? '0' + n : n;
+    document.getElementById('doc-progress-num').textContent = pad(nextIdx + 1) + ' / 05';
+    document.querySelectorAll('.doc-tick').forEach((t, i) => {
+      t.classList.toggle('tick-active', i === nextIdx);
+    });
+
+    activeDocKey = key;
+  }
+
+  // Init description on load
+  document.getElementById('doc-desc-inner').innerHTML = renderDocDesc('ghazali');
+
+  // ── INFINITE CAROUSEL ──
+  class InfiniteCarousel {
+    constructor(trackEl, wrapperEl, speedPx, goLeft) {
+      this.track   = trackEl;
+      this.wrapper = wrapperEl;
+      this.speed   = speedPx;   // pixels per second
+      this.goLeft  = goLeft;    // true = left, false = right
+      this.pos     = 0;
+      this.half    = 0;
+      this.paused  = false;
+      this.dragging = false;
+      this.dragStartX = 0;
+      this.lastTimestamp = null;
+
+      this._duplicateCards();
+      this._measure();
+      this._bindEvents();
+      requestAnimationFrame(ts => this._tick(ts));
+    }
+
+    _duplicateCards() {
+      // Clone the original set of cards and append them for seamless loop
+      const originals = Array.from(this.track.children);
+      originals.forEach(card => this.track.appendChild(card.cloneNode(true)));
+    }
+
+    _measure() {
+      // half = width of one set (half the total duplicated track)
+      this.half = this.track.scrollWidth / 2;
+      // For rightward motion start offset so loop works correctly
+      if (!this.goLeft) this.pos = -this.half;
+    }
+
+    _tick(ts) {
+      if (this.lastTimestamp !== null && !this.paused && !this.dragging) {
+        const dt = ts - this.lastTimestamp;
+        const delta = (this.speed / 1000) * dt;
+        this.pos += this.goLeft ? -delta : delta;
+      }
+      this.lastTimestamp = ts;
+      this._loop();
+      this.track.style.transform = `translateX(${this.pos}px)`;
+      requestAnimationFrame(ts2 => this._tick(ts2));
+    }
+
+    _loop() {
+      if (this.goLeft  && this.pos <= -this.half) this.pos += this.half;
+      if (!this.goLeft && this.pos >= 0)           this.pos -= this.half;
+    }
+
+    _bindEvents() {
+      // Pause on hover over wrapper
+      this.wrapper.addEventListener('mouseenter', () => { this.paused = true;  });
+      this.wrapper.addEventListener('mouseleave', () => { this.paused = false; });
+
+      // Drag
+      this.track.addEventListener('pointerdown', e => {
+        this.dragging   = true;
+        this.dragStartX = e.clientX;
+        this.track.setPointerCapture(e.pointerId);
+      });
+      this.track.addEventListener('pointermove', e => {
+        if (!this.dragging) return;
+        const dx = e.clientX - this.dragStartX;
+        this.pos += dx;
+        this.dragStartX = e.clientX;
+        this._loop();
+      });
+      this.track.addEventListener('pointerup',     () => { this.dragging = false; this.lastTimestamp = null; });
+      this.track.addEventListener('pointercancel', () => { this.dragging = false; this.lastTimestamp = null; });
+    }
+  }
+
+  // Init both carousels after layout is stable
+  window.addEventListener('load', () => {
+    new InfiniteCarousel(
+      document.getElementById('carousel-1'),
+      document.getElementById('wrapper-1'),
+      55,    // px/s
+      true   // left
+    );
+  });
+
+  // ── MAP MODAL ──
+  const BRANCHES = {
+    chander: {
+      tag: 'Main Clinic',
+      name: 'Chander Road',
+      addr: '668 Chander Rd, #01-20\nSingapore 210668',
+      tel: '6295 7667', telHref: 'tel:62957667',
+      wa: '9812 0565', waHref: 'https://api.whatsapp.com/send?phone=6598120565&text=Please%20give%20me%20appt%20for%20Date%2FTime',
+      mapSrc: 'https://maps.google.com/maps?q=668+Chander+Road+Singapore+210668&output=embed&z=17',
+      dirLink: 'https://www.google.com/maps/search/668+Chander+Road+Singapore+210668'
+    },
+    jurong: {
+      tag: 'Jurong West',
+      name: 'Jurong Branch',
+      addr: '463 Jurong West Street 41, #01-558\nSingapore 640463',
+      tel: '6469 8941', telHref: 'tel:64698941',
+      wa: '9890 7095', waHref: 'https://api.whatsapp.com/send?phone=6598907095&text=Please%20give%20me%20appt%20for%20Date%2FTime',
+      mapSrc: 'https://maps.google.com/maps?q=463+Jurong+West+Street+41+Singapore+640463&output=embed&z=17',
+      dirLink: 'https://www.google.com/maps/search/463+Jurong+West+Street+41+Singapore+640463'
+    },
+    tampines: {
+      tag: 'Tampines',
+      name: 'Tampines Branch',
+      addr: '138 Tampines Street 11, #01-126\nSingapore 521138',
+      tel: '6781 6694', telHref: 'tel:67816694',
+      wa: '8730 3670', waHref: 'https://api.whatsapp.com/send?phone=6587303670&text=Please%20give%20me%20appt%20for%20Date%2FTime',
+      mapSrc: 'https://maps.google.com/maps?q=138+Tampines+Street+11+Singapore+521138&output=embed&z=17',
+      dirLink: 'https://www.google.com/maps/search/138+Tampines+Street+11+Singapore+521138'
+    }
+  };
+
+  const mapModal = document.getElementById('map-modal');
+  const mapIframe = document.getElementById('map-iframe');
+
+  function openMapModal(key) {
+    const b = BRANCHES[key];
+    document.getElementById('map-branch-tag').textContent = b.tag;
+    document.getElementById('map-modal-title').textContent = b.name;
+    document.getElementById('map-branch-addr').innerHTML = b.addr.replace('\n', '<br>');
+    document.getElementById('map-directions-link').href = b.dirLink;
+    document.getElementById('map-branch-contacts').innerHTML = `
+      <a href="${b.telHref}" style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.7);text-decoration:none;transition:color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        ${b.tel}
+      </a>
+      <a href="${b.waHref}" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:#a8f0c6;text-decoration:none;transition:color 0.2s ease;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a8f0c6'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp: ${b.wa}
+      </a>
+    `;
+    mapIframe.src = b.mapSrc;
+    mapModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('map-close-btn').focus(), 60);
+  }
+
+  function closeMapModal() {
+    mapModal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { mapIframe.src = ''; }, 350);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mapModal.classList.contains('open')) closeMapModal();
+  });
+
+  // ── VIDEO MODAL ──
+  const videoModal    = document.getElementById('video-modal');
+  const videoModalBox = document.getElementById('video-modal-box');
+
+  function openVideoModal() {
+    videoModal.style.opacity = '1';
+    videoModal.style.pointerEvents = 'auto';
+    videoModalBox.style.transform = 'translateY(0) scale(1)';
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => { videoModal.querySelector('a').focus(); }, 60);
+  }
+
+  function closeVideoModal() {
+    videoModal.style.opacity = '0';
+    videoModal.style.pointerEvents = 'none';
+    videoModalBox.style.transform = 'translateY(20px) scale(0.96)';
+    document.body.style.overflow = '';
+  }
+
+  // ── BACKGROUND PATHS (21st.dev component — vanilla JS port) ──
+  (function initBackgroundPaths() {
+    const NS = 'http://www.w3.org/2000/svg';
+
+    document.querySelectorAll('.bg-paths-layer').forEach(container => {
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 696 316');
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('aria-hidden', 'true');
+      // Use clinic's dark teal as path colour (matches --text: #0d2d3a)
+      svg.style.color = '#0d2d3a';
+
+      const pathEls = [];
+
+      // Replicate FloatingPaths({ position }) for position = 1 and -1
+      [1, -1].forEach(pos => {
+        for (let i = 0; i < 36; i++) {
+          // Exact path formula from the 21st.dev component
+          const mx   = -(380 - i * 5 * pos);
+          const my   = -(189 + i * 6);
+          const c1x2 = -(312 - i * 5 * pos);
+          const c1y2 =   216 - i * 6;
+          const c1ex =   152 - i * 5 * pos;
+          const c1ey =   343 - i * 6;
+          const c2x1 =   616 - i * 5 * pos;
+          const c2y1 =   470 - i * 6;
+          const c2x2 =   684 - i * 5 * pos;
+          const c2y2 =   875 - i * 6;
+
+          const d = `M${mx} ${my}C${mx} ${my} ${c1x2} ${c1y2} ${c1ex} ${c1ey}` +
+                    `C${c2x1} ${c2y1} ${c2x2} ${c2y2} ${c2x2} ${c2y2}`;
+
+          const path = document.createElementNS(NS, 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('stroke', 'currentColor');
+          path.setAttribute('stroke-width', (0.5 + i * 0.03).toFixed(2));
+          path.setAttribute('fill', 'none');
+
+          svg.appendChild(path);
+          pathEls.push({ el: path, i });
+        }
+      });
+
+      container.appendChild(svg);
+
+      // After append so getTotalLength() is available
+      requestAnimationFrame(() => {
+        pathEls.forEach(({ el, i }) => {
+          const len = el.getTotalLength();
+          if (!len) return;
+
+          // 30% visible dash travelling along the full path
+          el.style.strokeDasharray = `${len * 0.3} ${len * 0.7}`;
+
+          const baseOpacity = Math.min(0.1 + i * 0.03, 1);
+          const dur   = (20 + Math.random() * 10) * 1000;   // 20–30 s
+          const delay = -(Math.random() * dur);               // random start point
+
+          // Web Animations API — pathOffset travel + opacity pulse
+          el.animate(
+            [
+              { strokeDashoffset: '0',              opacity: baseOpacity * 0.5 },
+              { strokeDashoffset: `${-len * 0.5}`,  opacity: baseOpacity,       offset: 0.5 },
+              { strokeDashoffset: `${-len}`,        opacity: baseOpacity * 0.5 },
+            ],
+            { duration: dur, delay, iterations: Infinity, easing: 'linear' }
+          );
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
