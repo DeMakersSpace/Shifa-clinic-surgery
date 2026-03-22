@@ -399,7 +399,7 @@
 
     .doc-selector {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 1fr 380px;
       gap: 5rem;
       align-items: center;
     }
@@ -409,6 +409,7 @@
       position: relative;
       height: 520px;
       flex-shrink: 0;
+      order: 2;
     }
     /* Decorative gold frame */
     .doc-photo-stage::before {
@@ -686,6 +687,11 @@
     }
     .branch-contact-link:hover { color: var(--forest); transform: translateX(3px); }
     .branch-contact-link:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; border-radius: 1px; }
+
+    /* Global focus-visible for all links and interactive elements */
+    a:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; border-radius: 1px; }
+    [role="button"]:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+    .branch-card:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
 
     /* Branch card clickable */
     .branch-card { cursor: pointer; }
@@ -1152,7 +1158,9 @@
       </div>
       <div class="reveal reveal-delay-2 practice-img-wrap" style="position:relative;">
         <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover; box-shadow:none;">
-    
+        <div style="position:absolute; inset:0; border-radius:2px; background:linear-gradient(to top, rgba(6,21,37,0.6) 0%, transparent 60%); pointer-events:none;"></div>
+        <div style="position:absolute; inset:0; border-radius:2px; background:rgba(26,107,124,0.18); mix-blend-mode:multiply; pointer-events:none;"></div>
+
 
         <!-- Floating badge -->
         <div class="practice-badge" style="position:absolute; bottom:-1.5rem; right:-1.5rem; background:var(--gold); color:var(--forest-deep); padding:1.25rem 1.5rem; border-radius:2px; box-shadow:0 8px 24px rgba(201,148,74,0.35);">
@@ -1507,7 +1515,7 @@
     <div class="branches-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem;">
 
       <!-- Little India Branch -->
-      <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Little India branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}" style="outline:none;">
+      <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Little India branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}">
         <div style="margin-bottom:1.5rem;">
           <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Little India</span>
         </div>
@@ -1531,7 +1539,7 @@
       </div>
 
       <!-- Jurong Branch -->
-      <div class="branch-card reveal reveal-delay-2" onclick="openMapModal('jurong')" tabindex="0" role="button" aria-label="View Jurong branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('jurong')}" style="outline:none;">
+      <div class="branch-card reveal reveal-delay-2" onclick="openMapModal('jurong')" tabindex="0" role="button" aria-label="View Jurong branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('jurong')}">
         <div style="margin-bottom:1.5rem;">
           <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Jurong West</span>
         </div>
@@ -1555,7 +1563,7 @@
       </div>
 
       <!-- Tampines Branch -->
-      <div class="branch-card reveal reveal-delay-4" onclick="openMapModal('tampines')" tabindex="0" role="button" aria-label="View Tampines branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('tampines')}" style="outline:none;">
+      <div class="branch-card reveal reveal-delay-4" onclick="openMapModal('tampines')" tabindex="0" role="button" aria-label="View Tampines branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('tampines')}">
         <div style="margin-bottom:1.5rem;">
           <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Tampines</span>
         </div>
