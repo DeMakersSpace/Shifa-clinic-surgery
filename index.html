@@ -49,20 +49,20 @@
   </script>
   <style>
     :root {
-      --forest:       #1a6b7c;   /* clinical teal */
-      --forest-deep:  #0a3340;   /* deep navy teal */
-      --sage:         #2196a4;   /* mid clinical blue */
-      --sage-light:   #5dbdd4;   /* light teal */
-      --mint:         #aee3ed;   /* pale teal */
-      --gold:         #c9944a;   /* warm CTA accent – kept for contrast */
-      --gold-pale:    #c8edf5;   /* light teal highlight (replaces warm pale) */
-      --gold-dim:     #1a6b7c;   /* teal dim accent */
-      --cream:        #f0f7fa;   /* clinical off-white / light blue-white */
-      --parchment:    #daeef5;   /* slightly deeper clinical tint */
-      --bark:         #061525;   /* very dark navy */
-      --text:         #0d2d3a;   /* dark teal-navy */
-      --text-muted:   #4a7a88;   /* muted teal-grey */
-      --white:        #fefdf9;
+      --forest:       #1C4060;   /* deep steel blue — headings & dark text */
+      --forest-deep:  #0D2238;   /* darkest steel blue — dark surfaces */
+      --sage:         #4880A4;   /* primary clinical blue — actions */
+      --sage-light:   #78AACC;   /* soft clinical blue — accents */
+      --mint:         #C8D8E8;   /* palette blue from image — highlights */
+      --gold:         #C4862A;   /* warm amber — CTA buttons */
+      --gold-pale:    #fde9c0;   /* amber pale */
+      --gold-dim:     #a06820;   /* amber deep */
+      --cream:        #EEF5FA;   /* near-white with blue tint — light section bg */
+      --parchment:    #DDE8F2;   /* light clinical blue-grey — card bg */
+      --bark:         #071828;   /* near-black clinical */
+      --text:         #1C4060;   /* body text */
+      --text-muted:   #4E7896;   /* muted text */
+      --white:        #FFFFFF;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -106,9 +106,9 @@
       transition: background 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1);
     }
     #header.scrolled {
-      background: rgba(10,51,64,0.95);
+      background: rgba(20,48,76,0.95);
       backdrop-filter: blur(16px);
-      box-shadow: 0 1px 40px rgba(10,51,64,0.35);
+      box-shadow: 0 1px 40px rgba(20,48,76,0.45);
     }
 
     .logo-text {
@@ -159,7 +159,8 @@
     .btn-tel:active { transform: translateY(0); }
     .btn-tel:focus-visible { outline: 2px solid var(--gold-pale); outline-offset: 2px; }
 
-    @media (max-width: 640px) { .nav-ctas .btn-tel { display: none; } #header { padding: 1rem 1.25rem; } }
+    @media (max-width: 900px) { .nav-ctas .btn-tel { display: none; } }
+    @media (max-width: 640px) { #header { padding: 0.875rem 1.25rem; } }
 
     /* ── HERO ── */
     #hero {
@@ -170,10 +171,10 @@
       justify-content: center;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 10% 65%, rgba(33,150,164,0.28) 0%, transparent 55%),
-        radial-gradient(ellipse at 90% 25%, rgba(201,148,74,0.10) 0%, transparent 45%),
-        radial-gradient(ellipse at 55% 95%, rgba(10,51,64,0.9) 0%, transparent 55%),
-        linear-gradient(155deg, #061525 0%, #0a3340 45%, #1a6b7c 75%, #0a3340 100%);
+        radial-gradient(ellipse at 10% 60%, rgba(26, 58, 92, 0.55) 0%, transparent 50%),
+        radial-gradient(ellipse at 55% 100%, rgba(13, 34, 56, 0.50) 0%, transparent 45%),
+        linear-gradient(105deg, rgba(20, 48, 80, 0.72) 0%, rgba(26, 58, 92, 0.42) 55%, rgba(200, 216, 232, 0.08) 100%),
+        url('MedicalBackgroundForHeropage.jpg') center/cover no-repeat;
     }
 
     .hero-leaf-1 {
@@ -270,6 +271,93 @@
       50%      { opacity: 0.8; transform: scaleY(1.2); }
     }
 
+    /* ── DIGITAL SERENITY HERO ENHANCEMENTS ── */
+
+    /* Override parent fade so individual words animate instead */
+    .hero-title { animation: none !important; }
+
+    /* Mouse-tracking gradient overlay */
+    #hero-mouse-gradient {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 1;
+      background: radial-gradient(700px circle at 50% 50%, rgba(40,120,176,0.15) 0%, transparent 65%);
+      transition: background 0.15s ease;
+    }
+
+    /* Animated SVG grid */
+    .hero-grid-svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 1; opacity: 0.13;
+    }
+    .hero-grid-line {
+      stroke: rgba(200,216,232,0.35);
+      stroke-width: 0.5;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: grid-draw 2.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes grid-draw { to { stroke-dashoffset: 0; } }
+
+    /* Word-by-word reveal */
+    .hero-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: word-appear 0.65s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes word-appear {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Corner bracket elements */
+    .hero-corner-el {
+      position: absolute; width: 36px; height: 36px;
+      pointer-events: none; z-index: 2;
+      opacity: 0; animation: fadeIn 0.8s ease 1.2s forwards;
+    }
+    .hero-corner-tl { top: 1.25rem; left: 1.25rem; border-top: 1px solid rgba(140,210,235,0.35); border-left: 1px solid rgba(140,210,235,0.35); }
+    .hero-corner-tr { top: 1.25rem; right: 1.25rem; border-top: 1px solid rgba(140,210,235,0.35); border-right: 1px solid rgba(140,210,235,0.35); }
+    .hero-corner-bl { bottom: 5.5rem; left: 1.25rem; border-bottom: 1px solid rgba(140,210,235,0.35); border-left: 1px solid rgba(140,210,235,0.35); }
+    .hero-corner-br { bottom: 5.5rem; right: 1.25rem; border-bottom: 1px solid rgba(140,210,235,0.35); border-right: 1px solid rgba(140,210,235,0.35); }
+
+    /* Detail pulse dots */
+    .hero-detail-dot {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: var(--sage-light); pointer-events: none; z-index: 2;
+      animation: pulse-glow-dot var(--dot-dur, 3s) ease-in-out var(--dot-delay, 0s) infinite;
+    }
+    @keyframes pulse-glow-dot {
+      0%, 100% { opacity: 0.3; box-shadow: 0 0 4px rgba(98,180,208,0.3); transform: scale(1); }
+      50%       { opacity: 0.9; box-shadow: 0 0 10px rgba(98,180,208,0.7); transform: scale(2); }
+    }
+
+    /* Floating ambient dots */
+    .hero-floating-dot {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; z-index: 1;
+      animation: float-dot var(--float-dur, 8s) ease-in-out var(--float-delay, 0s) infinite;
+    }
+    @keyframes float-dot {
+      0%   { opacity: 0; transform: translateY(var(--float-start, 10px)) scale(0.8); }
+      20%  { opacity: var(--dot-max-opacity, 0.4); }
+      80%  { opacity: var(--dot-max-opacity, 0.4); }
+      100% { opacity: 0; transform: translateY(calc(var(--float-start, 10px) - 40px)) scale(1); }
+    }
+
+    /* Click ripple */
+    .hero-ripple {
+      position: absolute; width: 60px; height: 60px; border-radius: 50%;
+      border: 1px solid rgba(140,210,235,0.55);
+      pointer-events: none; z-index: 3;
+      margin: -30px 0 0 -30px;
+      animation: ripple-out 1s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes ripple-out {
+      from { transform: scale(0); opacity: 0.9; }
+      to   { transform: scale(5); opacity: 0; }
+    }
+
     /* ── SHARED SECTION STYLES ── */
     .section-label {
       font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
@@ -298,7 +386,7 @@
       content: '';
       position: absolute; top: -120px; right: -80px;
       width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(33,150,164,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(72,128,164,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -312,8 +400,8 @@
       border-radius:4px;
       cursor:grab;
       background:var(--cream);
-      border:1px solid rgba(10,51,64,0.08);
-      box-shadow:0 8px 24px rgba(10,51,64,0.08);
+      border:1px solid rgba(20,48,76,0.08);
+      box-shadow:0 8px 24px rgba(20,48,76,0.08);
       transition:transform 0.65s cubic-bezier(0.23,1,0.32,1), opacity 0.55s ease, box-shadow 0.4s ease, border-color 0.4s ease;
       overflow:hidden;
     }
@@ -322,7 +410,7 @@
     .tcard-body { width:100%; height:100%; padding:2.25rem 2rem; display:flex; flex-direction:column; }
 
     /* Fan-spread positions */
-    .tcard[data-pos="0"]      { transform:translateX(0)     translateZ(0)     scale(1);    z-index:10; opacity:1;    border-color:rgba(201,148,74,0.3); box-shadow:0 20px 60px rgba(10,51,64,0.14), 0 0 0 1px rgba(201,148,74,0.18), inset 0 1px 0 rgba(255,255,255,0.7); }
+    .tcard[data-pos="0"]      { transform:translateX(0)     translateZ(0)     scale(1);    z-index:10; opacity:1;    border-color:rgba(201,148,74,0.3); box-shadow:0 20px 60px rgba(20,48,76,0.14), 0 0 0 1px rgba(201,148,74,0.18), inset 0 1px 0 rgba(255,255,255,0.7); }
     .tcard[data-pos="1"]      { transform:translateX(230px)  translateZ(-120px) scale(0.74); z-index:6;  opacity:0.5;  }
     .tcard[data-pos="-1"]     { transform:translateX(-230px) translateZ(-120px) scale(0.74); z-index:6;  opacity:0.5;  }
     .tcard[data-pos="2"]      { transform:translateX(370px)  translateZ(-220px) scale(0.56); z-index:3;  opacity:0.22; }
@@ -335,7 +423,7 @@
 
     .ts-icon {
       width:52px; height:52px; border-radius:50%;
-      background:linear-gradient(135deg,rgba(10,51,64,0.08),rgba(201,148,74,0.1));
+      background:linear-gradient(135deg,rgba(20,48,76,0.08),rgba(201,148,74,0.1));
       display:flex; align-items:center; justify-content:center;
       margin-bottom:1.25rem; flex-shrink:0;
     }
@@ -353,7 +441,7 @@
     .tcard.tcard-dark h3 { color: #fff; }
     .tcard.tcard-dark p  { color: rgba(255,255,255,0.5); }
     .ts-icon-dark {
-      background: linear-gradient(135deg, rgba(33,150,164,0.25), rgba(201,148,74,0.15));
+      background: linear-gradient(135deg, rgba(72,128,164,0.25), rgba(201,148,74,0.15));
       border: 1px solid rgba(201,148,74,0.15);
     }
 
@@ -362,7 +450,7 @@
 
     .tc-btn {
       width:44px; height:44px; border-radius:50%;
-      border:1.5px solid rgba(26,107,124,0.3);
+      border:1.5px solid rgba(72,144,176,0.3);
       background:white; cursor:pointer;
       display:flex; align-items:center; justify-content:center;
       color:var(--text-muted);
@@ -375,12 +463,12 @@
     .tc-dots { display:flex; gap:0.45rem; align-items:center; }
     .tc-dot {
       width:6px; height:6px; border-radius:50%;
-      background:rgba(26,107,124,0.22);
+      background:rgba(72,144,176,0.22);
       cursor:pointer; border:none; padding:0;
       transition:width 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
     }
     .tc-dot.on          { width:18px; border-radius:3px; background:var(--gold); }
-    .tc-dot:hover:not(.on) { background:rgba(26,107,124,0.45); }
+    .tc-dot:hover:not(.on) { background:rgba(72,144,176,0.45); }
     .tc-dot:focus-visible  { outline:2px solid var(--gold); outline-offset:2px; }
 
     /* ── DOCTORS CHARACTER SELECT ── */
@@ -432,7 +520,7 @@
       transition: opacity 0.58s cubic-bezier(0.22,1,0.36,1), transform 0.58s cubic-bezier(0.22,1,0.36,1), filter 0.58s ease;
       pointer-events: none;
       z-index: 1;
-      box-shadow: 0 32px 72px rgba(10,51,64,0.55), 0 0 0 1px rgba(201,148,74,0.15);
+      box-shadow: 0 32px 72px rgba(20,48,76,0.55), 0 0 0 1px rgba(201,148,74,0.15);
     }
     .doc-photo-card.active {
       opacity: 1;
@@ -471,7 +559,7 @@
     .doc-photo-card::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,51,64,0.88) 0%, rgba(10,51,64,0.1) 55%);
+      background: linear-gradient(to top, rgba(20,48,76,0.88) 0%, rgba(20,48,76,0.1) 55%);
     }
     .doc-photo-label {
       position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
@@ -583,7 +671,7 @@
 
     #doctor-modal-backdrop {
       position: absolute; inset: 0;
-      background: rgba(10,25,18,0.75);
+      background: rgba(20,48,76,0.75);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
@@ -595,7 +683,7 @@
       border-radius: 4px;
       max-width: 640px; width: 100%;
       max-height: 88vh; overflow-y: auto;
-      box-shadow: 0 32px 80px rgba(10,51,64,0.4), 0 0 0 1px rgba(201,148,74,0.1);
+      box-shadow: 0 32px 80px rgba(20,48,76,0.4), 0 0 0 1px rgba(201,148,74,0.1);
       transform: translateY(20px) scale(0.97);
       transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
     }
@@ -630,7 +718,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 2rem; font-weight: 600;
       border: 3px solid rgba(201,148,74,0.4);
-      box-shadow: 0 6px 24px rgba(10,51,64,0.4);
+      box-shadow: 0 6px 24px rgba(20,48,76,0.4);
       margin-bottom: 1.25rem;
     }
     .modal-body {
@@ -643,16 +731,156 @@
 
     /* ── SERVICES ── */
     #services {
-      background: var(--forest-deep);
-      position: relative; overflow: hidden;
+      background: linear-gradient(175deg, var(--forest-deep) 0%, #183854 100%);
+      position: relative;
+      /* overflow must NOT be hidden — position:sticky requires visible overflow */
     }
     #services::before {
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(33,150,164,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(201,148,74,0.07) 0%, transparent 50%);
-      pointer-events: none;
+        radial-gradient(ellipse at 15% 50%, rgba(88,144,180,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse at 85% 15%, rgba(200,216,232,0.06) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── SERVICES CARD STACK ── */
+    .srv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .srv-sticky-col {
+      position: sticky;
+      top: 0;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 0;
+      z-index: 5;
+    }
+    /* Stack wrapper (right column) */
+    .srv-stack-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 6rem 0;
+      min-height: 100svh;
+    }
+    .srv-stack-area {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .srv-stack {
+      position: relative;
+      width: 360px;
+      height: 220px;
+      margin-top: 70px;
+    }
+    ul.srv-cards {
+      list-style: none;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .srv-card-item {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      background: rgba(20, 55, 90, 0.65);
+      border: 1.5px solid rgba(200, 216, 232, 0.14);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow:
+        0 4px 16px rgba(13, 34, 56, 0.2),
+        0 12px 40px rgba(13, 34, 56, 0.25),
+        inset 0 1px 0 rgba(200, 216, 232, 0.08);
+      will-change: transform, opacity, filter;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+    .srv-card-item[data-pos="0"] {
+      border-color: rgba(201, 148, 74, 0.28);
+      box-shadow:
+        0 20px 60px rgba(13, 34, 56, 0.5),
+        0 0 0 1px rgba(201, 148, 74, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    }
+    .srv-card-item[data-pos="0"]:active { cursor: grabbing; }
+    .srv-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .srv-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(40, 120, 176, 0.15);
+      border: 1px solid rgba(98, 180, 208, 0.18);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .srv-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: var(--sage-light); opacity: 0.45; line-height: 1;
+    }
+    .srv-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: #fff; margin-bottom: 0.4rem; line-height: 1.25;
+    }
+    .srv-card-desc {
+      font-size: 0.875rem; line-height: 1.7;
+      color: rgba(180, 220, 240, 0.6); margin: 0;
+    }
+    /* Nav buttons */
+    .srv-nav-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid rgba(200, 216, 232, 0.18);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: rgba(200, 220, 240, 0.65);
+      flex-shrink: 0;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    }
+    .srv-nav-btn:hover {
+      background: rgba(201, 148, 74, 0.15);
+      border-color: rgba(201, 148, 74, 0.35);
+      color: var(--gold-pale);
+      transform: scale(1.08);
+    }
+    .srv-nav-btn:active { transform: scale(0.94); }
+    .srv-nav-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    /* Progress dots */
+    .srv-dots-row { display: flex; gap: 0.45rem; align-items: center; }
+    .srv-dot {
+      height: 6px; border-radius: 3px;
+      background: rgba(120, 170, 204, 0.25);
+      border: none; padding: 0; cursor: pointer;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+    .srv-dot.active { width: 18px; background: var(--gold); }
+    .srv-dot:not(.active) { width: 6px; }
+    .srv-dot:hover:not(.active) { background: rgba(120, 170, 204, 0.5); }
+    .srv-dot:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .srv-hint { font-size: 0.72rem; color: rgba(180, 220, 240, 0.3); letter-spacing: 0.05em; }
+    @media (max-width: 768px) {
+      .srv-grid { grid-template-columns: 1fr; }
+      .srv-sticky-col { position: relative; min-height: auto; padding: 4rem 0 2rem; }
+      .srv-stack-wrapper { min-height: auto; padding: 0 0 5rem; }
+      .srv-stack { width: min(320px, 88vw); height: 200px; }
     }
 
     /* ── BRANCHES ── */
@@ -660,12 +888,12 @@
 
     .branch-card {
       background: var(--cream);
-      border: 1px solid rgba(10,51,64,0.1);
+      border: 1px solid rgba(20,48,76,0.1);
       border-radius: 2px;
       padding: 2.5rem 2rem;
       position: relative; overflow: hidden;
       transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
-      box-shadow: 0 2px 8px rgba(10,51,64,0.05);
+      box-shadow: 0 2px 8px rgba(20,48,76,0.05);
     }
     .branch-card::after {
       content: '';
@@ -674,7 +902,7 @@
       background: var(--gold);
       transition: height 0.35s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .branch-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(10,51,64,0.12); border-color: rgba(201,148,74,0.2); }
+    .branch-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(20,48,76,0.12); border-color: rgba(201,148,74,0.2); }
     .branch-card:hover::after { height: 100%; }
 
     .branch-main { border-color: rgba(201,148,74,0.2); }
@@ -698,7 +926,7 @@
     .view-map-hint {
       display: flex; align-items: center; gap: 0.5rem;
       margin-top: 1.5rem; padding-top: 1rem;
-      border-top: 1px solid rgba(10,51,64,0.08);
+      border-top: 1px solid rgba(20,48,76,0.08);
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--sage);
       transition: color 0.2s ease, gap 0.2s cubic-bezier(0.34,1.56,0.64,1);
@@ -716,7 +944,7 @@
     #map-modal.open { opacity: 1; pointer-events: auto; }
     #map-modal-backdrop {
       position: absolute; inset: 0;
-      background: rgba(10,25,18,0.78);
+      background: rgba(20,48,76,0.78);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -726,7 +954,7 @@
       background: var(--white);
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 32px 80px rgba(10,51,64,0.45);
+      box-shadow: 0 32px 80px rgba(20,48,76,0.45);
       display: grid;
       grid-template-columns: 280px 1fr;
       max-height: 88vh;
@@ -780,10 +1008,10 @@
       position: relative; overflow: hidden; border-radius: 2px;
       background: var(--forest-deep);
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(10,51,64,0.2);
+      box-shadow: 0 4px 20px rgba(20,48,76,0.2);
       transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
     }
-    .video-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 20px 48px rgba(10,51,64,0.32); }
+    .video-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 20px 48px rgba(20,48,76,0.32); }
     .video-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
     .video-thumb {
@@ -795,7 +1023,7 @@
 
     .video-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,51,64,0.85) 0%, rgba(10,51,64,0.15) 60%);
+      background: linear-gradient(to top, rgba(20,48,76,0.85) 0%, rgba(20,48,76,0.15) 60%);
     }
     .video-play {
       position: absolute; inset: 0;
@@ -823,7 +1051,7 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 5% 80%, rgba(33,150,164,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 5% 80%, rgba(72,128,164,0.15) 0%, transparent 55%),
         radial-gradient(ellipse at 95% 10%, rgba(201,148,74,0.08) 0%, transparent 45%);
       pointer-events: none;
     }
@@ -907,7 +1135,7 @@
       background: #fff; border-radius: 2px;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
       .mobile-menu-btn { display: flex; }
     }
 
@@ -936,7 +1164,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 498;
-      background: rgba(6,21,37,0.97);
+      background: rgba(16,36,56,0.97);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       padding: 5.5rem 2rem 2.5rem;
@@ -1006,7 +1234,7 @@
     }
     .testi-avatar {
       width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(135deg, rgba(33,150,164,0.5), rgba(10,51,64,0.7));
+      background: linear-gradient(135deg, rgba(72,128,164,0.5), rgba(20,48,76,0.7));
       display: flex; align-items: center; justify-content: center;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem; font-weight: 600;
@@ -1079,31 +1307,69 @@
 
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
+  <!-- Mouse-tracking gradient overlay -->
+  <div id="hero-mouse-gradient"></div>
+
+  <!-- Animated grid overlay -->
+  <svg class="hero-grid-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <!-- Horizontal lines -->
+    <line class="hero-grid-line" x1="0" y1="22" x2="100" y2="22" style="animation-delay:0.05s"/>
+    <line class="hero-grid-line" x1="0" y1="44" x2="100" y2="44" style="animation-delay:0.2s"/>
+    <line class="hero-grid-line" x1="0" y1="66" x2="100" y2="66" style="animation-delay:0.35s"/>
+    <line class="hero-grid-line" x1="0" y1="88" x2="100" y2="88" style="animation-delay:0.5s"/>
+    <!-- Vertical lines -->
+    <line class="hero-grid-line" x1="20" y1="0" x2="20" y2="100" style="animation-delay:0.12s"/>
+    <line class="hero-grid-line" x1="40" y1="0" x2="40" y2="100" style="animation-delay:0.27s"/>
+    <line class="hero-grid-line" x1="60" y1="0" x2="60" y2="100" style="animation-delay:0.42s"/>
+    <line class="hero-grid-line" x1="80" y1="0" x2="80" y2="100" style="animation-delay:0.57s"/>
+  </svg>
+
+  <!-- Corner bracket elements -->
+  <div class="hero-corner-el hero-corner-tl"></div>
+  <div class="hero-corner-el hero-corner-tr"></div>
+  <div class="hero-corner-el hero-corner-bl"></div>
+  <div class="hero-corner-el hero-corner-br"></div>
+
+  <!-- Detail pulse dots -->
+  <div class="hero-detail-dot" style="top:22%;left:24%;--dot-dur:2.8s;--dot-delay:0.3s;"></div>
+  <div class="hero-detail-dot" style="top:44%;right:40%;--dot-dur:3.5s;--dot-delay:0.9s;"></div>
+  <div class="hero-detail-dot" style="top:66%;left:80%;--dot-dur:4.1s;--dot-delay:0.1s;"></div>
+  <div class="hero-detail-dot" style="top:22%;right:20%;--dot-dur:3.2s;--dot-delay:1.4s;"></div>
+  <div class="hero-detail-dot" style="top:88%;left:60%;--dot-dur:2.5s;--dot-delay:0.6s;"></div>
+
+  <!-- Floating ambient dots -->
+  <div class="hero-floating-dot" style="width:6px;height:6px;background:rgba(98,180,208,0.5);top:32%;left:14%;--float-dur:9s;--float-delay:0s;--float-start:10px;--dot-max-opacity:0.5;"></div>
+  <div class="hero-floating-dot" style="width:4px;height:4px;background:rgba(160,215,235,0.55);top:58%;right:16%;--float-dur:7s;--float-delay:1.6s;--float-start:15px;--dot-max-opacity:0.45;"></div>
+  <div class="hero-floating-dot" style="width:8px;height:8px;background:rgba(40,120,176,0.3);top:18%;right:32%;--float-dur:11s;--float-delay:0.9s;--float-start:5px;--dot-max-opacity:0.3;"></div>
+  <div class="hero-floating-dot" style="width:5px;height:5px;background:rgba(180,228,244,0.4);bottom:32%;left:28%;--float-dur:8s;--float-delay:2.3s;--float-start:20px;--dot-max-opacity:0.4;"></div>
+  <div class="hero-floating-dot" style="width:3px;height:3px;background:rgba(98,180,208,0.65);top:72%;right:23%;--float-dur:6s;--float-delay:0.4s;--float-start:12px;--dot-max-opacity:0.65;"></div>
+  <div class="hero-floating-dot" style="width:7px;height:7px;background:rgba(160,215,235,0.28);bottom:38%;right:10%;--float-dur:10s;--float-delay:3.1s;--float-start:8px;--dot-max-opacity:0.28;"></div>
+
   <!-- Decorative botanical leaves -->
   <svg class="hero-leaf-1" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M100 10 C140 10, 190 50, 190 100 C190 150, 140 190, 100 190 C60 190, 20 160, 10 120 C0 80, 30 30, 100 10Z" fill="#5dbdd4"/>
-    <path d="M100 10 L100 190" stroke="#3aadc4" stroke-width="2" opacity="0.5"/>
-    <path d="M100 50 C120 60, 150 75, 170 100" stroke="#3aadc4" stroke-width="1.5" opacity="0.4"/>
-    <path d="M100 80 C120 88, 145 100, 165 125" stroke="#3aadc4" stroke-width="1.5" opacity="0.4"/>
-    <path d="M100 50 C80 60, 50 75, 30 100" stroke="#3aadc4" stroke-width="1.5" opacity="0.4"/>
+    <path d="M100 10 C140 10, 190 50, 190 100 C190 150, 140 190, 100 190 C60 190, 20 160, 10 120 C0 80, 30 30, 100 10Z" fill="#78AACC"/>
+    <path d="M100 10 L100 190" stroke="#4A7CB8" stroke-width="2" opacity="0.5"/>
+    <path d="M100 50 C120 60, 150 75, 170 100" stroke="#4A7CB8" stroke-width="1.5" opacity="0.4"/>
+    <path d="M100 80 C120 88, 145 100, 165 125" stroke="#4A7CB8" stroke-width="1.5" opacity="0.4"/>
+    <path d="M100 50 C80 60, 50 75, 30 100" stroke="#4A7CB8" stroke-width="1.5" opacity="0.4"/>
   </svg>
   <svg class="hero-leaf-2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M100 10 C140 10, 190 50, 190 100 C190 150, 140 190, 100 190 C60 190, 20 160, 10 120 C0 80, 30 30, 100 10Z" fill="#5dbdd4"/>
-    <path d="M100 10 L100 190" stroke="#3aadc4" stroke-width="2" opacity="0.5"/>
+    <path d="M100 10 C140 10, 190 50, 190 100 C190 150, 140 190, 100 190 C60 190, 20 160, 10 120 C0 80, 30 30, 100 10Z" fill="#78AACC"/>
+    <path d="M100 10 L100 190" stroke="#4A7CB8" stroke-width="2" opacity="0.5"/>
   </svg>
 
   <div class="hero-content" style="padding: 8rem 2.5rem 10rem; max-width: min(800px, 90vw); margin: 0 auto;">
     <span class="hero-label">Shifa · شفاء · Healing</span>
     <h1 class="hero-title">
-      Guiding You To<br>
-      Your <em>Best Life</em>
+      <span class="hero-word" style="animation-delay:0.25s">Guiding</span>&nbsp;<span class="hero-word" style="animation-delay:0.35s">You</span>&nbsp;<span class="hero-word" style="animation-delay:0.45s">To</span><br>
+      <span class="hero-word" style="animation-delay:0.55s">Your</span>&nbsp;<em><span class="hero-word" style="animation-delay:0.65s">Best</span>&nbsp;<span class="hero-word" style="animation-delay:0.75s">Life</span></em>
     </h1>
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">
+    <div class="hero-divider" style="animation-delay:0.92s"></div>
+    <p class="hero-tagline" style="animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.08s both;">
       Preventive health is your insurance for a healthy retirement.
       Our trusted family physicians are here to help you take charge of your wellbeing.
     </p>
-    <div class="hero-ctas">
+    <div class="hero-ctas" style="animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.22s both;">
       <a class="btn-gold"
          href="https://api.whatsapp.com/send?phone=6598120565&text=Please%20give%20me%20appt%20for%20Date%2FTime"
          target="_blank" rel="noopener noreferrer">
@@ -1122,7 +1388,7 @@
   </div>
 
   <!-- Hours ribbon -->
-  <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(10,51,64,0.6); backdrop-filter:blur(8px); border-top:1px solid rgba(201,148,74,0.15); padding:1rem 2.5rem; display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
+  <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(20,48,76,0.6); backdrop-filter:blur(8px); border-top:1px solid rgba(201,148,74,0.15); padding:1rem 2.5rem; display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
     <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.7); font-size:0.8rem; letter-spacing:0.05em;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <strong style="color:#fff;">Mon – Sun</strong>&nbsp;9:00 AM – 7:00 PM
@@ -1159,7 +1425,7 @@
       <div class="reveal reveal-delay-2 practice-img-wrap" style="position:relative;">
         <img src="Our Health mission picture.webp" alt="Shifa Clinic — Our Health Mission" style="width:100%; border-radius:2px; display:block; object-fit:cover; box-shadow:none;">
         <div style="position:absolute; inset:0; border-radius:2px; background:linear-gradient(to top, rgba(6,21,37,0.6) 0%, transparent 60%); pointer-events:none;"></div>
-        <div style="position:absolute; inset:0; border-radius:2px; background:rgba(26,107,124,0.18); mix-blend-mode:multiply; pointer-events:none;"></div>
+        <div style="position:absolute; inset:0; border-radius:2px; background:rgba(15,23,42,0.15); mix-blend-mode:multiply; pointer-events:none;"></div>
 
 
         <!-- Floating badge -->
@@ -1233,7 +1499,7 @@
 <!-- ══════════ OUR DOCTORS ══════════ -->
 <section id="doctors" style="padding: 7rem 2.5rem; position:relative; overflow:hidden;">
   <!-- Subtle bg glow -->
-  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(33,150,164,0.07) 0%, transparent 65%), radial-gradient(ellipse at 80% 20%, rgba(201,148,74,0.05) 0%, transparent 50%); pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(72,128,164,0.07) 0%, transparent 65%), radial-gradient(ellipse at 80% 20%, rgba(201,148,74,0.05) 0%, transparent 50%); pointer-events:none;"></div>
 
   <div style="max-width:1100px; margin:0 auto; position:relative;">
 
@@ -1360,133 +1626,145 @@
 </section>
 
 <!-- ══════════ OUR SERVICES ══════════ -->
-<section id="services" style="padding:7rem 0; overflow:hidden; position:relative;">
+<section id="services" style="position: relative;">
 
-  <!-- Header -->
-  <div style="max-width:1100px; margin:0 auto; padding:0 2.5rem; text-align:center; margin-bottom:3.5rem;" class="reveal">
-    <span class="section-label" style="color:var(--gold-pale);">What We Offer</span>
-    <div class="gold-rule" style="margin:1.25rem auto;"></div>
-    <h2 class="section-title" style="color:#fff;">Our <em style="font-style:italic;">Services</em></h2>
-    <p style="color:rgba(255,255,255,0.3); margin-top:0.875rem; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;">Use arrows to explore</p>
-  </div>
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1;">
+    <div class="srv-grid">
 
-  <!-- Turnstile -->
-  <div style="max-width:1100px; margin:0 auto; padding:0 2.5rem;">
-    <div class="turnstile-wrap reveal" id="services-turnstile" aria-label="Our services">
-
-      <div class="turnstile-stage" id="srv-stage">
-
-        <!-- Card 0: General Practice -->
-        <div class="tcard tcard-dark" data-pos="0" data-card="0">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">General Practice</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Comprehensive consultations and treatment for everyday health needs, illnesses, and injuries.</p>
+      <!-- LEFT: Sticky header column -->
+      <div class="srv-sticky-col reveal">
+        <span class="section-label" style="color: var(--gold-pale);">What We Offer</span>
+        <div class="gold-rule" style="margin: 1.25rem 0;"></div>
+        <h2 class="section-title" style="color: #fff; text-align: left;">Our <em style="font-style: italic;">Services</em></h2>
+        <p style="color: rgba(180, 220, 240, 0.65); margin-top: 1.5rem; font-size: 0.95rem; line-height: 1.75; max-width: 38ch;">
+          Our medical team delivers high-quality care with unwavering commitment to your health and wellness — from everyday consultations to long-term preventive strategies.
+        </p>
+        <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; color: rgba(180, 220, 240, 0.45);">
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: var(--sage-light); flex-shrink: 0;"></div>
+            All clinics open Mon – Sun, 9AM – 7PM
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; color: rgba(180, 220, 240, 0.45);">
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: var(--sage-light); flex-shrink: 0;"></div>
+            CHAS, MediSave &amp; Integrated Shield accepted
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; color: rgba(180, 220, 240, 0.45);">
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: var(--sage-light); flex-shrink: 0;"></div>
+            3 convenient locations across Singapore
           </div>
         </div>
-
-        <!-- Card 1: Health Screening -->
-        <div class="tcard tcard-dark" data-pos="1" data-card="1">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Health Screening</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Preventive screenings and check-ups tailored to your age, lifestyle, and risk profile.</p>
-          </div>
-        </div>
-
-        <!-- Card 2: Preventive Care -->
-        <div class="tcard tcard-dark" data-pos="hidden" data-card="2">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Preventive Care</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Proactive strategies and lifestyle counselling to maintain and maximise your long-term wellbeing.</p>
-          </div>
-        </div>
-
-        <!-- Card 3: Occupational Medicine -->
-        <div class="tcard tcard-dark" data-pos="hidden" data-card="3">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Occupational Medicine</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Workplace health assessments, fitness-to-work evaluations, and work-related condition management.</p>
-          </div>
-        </div>
-
-        <!-- Card 4: Paediatrics -->
-        <div class="tcard tcard-dark" data-pos="hidden" data-card="4">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Paediatrics</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Dedicated and compassionate care for infants, children, and adolescents at every stage of growth.</p>
-          </div>
-        </div>
-
-        <!-- Card 5: Women's Health -->
-        <div class="tcard tcard-dark" data-pos="hidden" data-card="5">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Women's Health</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Holistic and sensitive care for women at every stage of life, from reproductive health to menopause.</p>
-          </div>
-        </div>
-
-        <!-- Card 6: Vaccinations -->
-        <div class="tcard tcard-dark" data-pos="hidden" data-card="6">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 3-3-6-3 6-3-3H2"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Vaccinations</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Full range of immunisations for children and adults, including travel vaccines and flu shots.</p>
-          </div>
-        </div>
-
-        <!-- Card 7: Chronic Disease Management -->
-        <div class="tcard tcard-dark" data-pos="-1" data-card="7">
-          <div class="tcard-body">
-            <div class="ts-icon ts-icon-dark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; margin-bottom:0.75rem;">Chronic Disease Management</h3>
-            <p style="font-size:0.9rem; line-height:1.75;">Ongoing support and monitoring for diabetes, hypertension, high cholesterol, and other long-term conditions.</p>
-          </div>
-        </div>
-
-      </div><!-- /srv-stage -->
-
-      <!-- Controls -->
-      <div class="turnstile-controls">
-        <button class="tc-btn" id="srv-prev" aria-label="Previous service">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="tc-dots" role="tablist" aria-label="Service navigation">
-          <button class="tc-dot on"  data-card="0" role="tab" aria-selected="true"  aria-label="General Practice"></button>
-          <button class="tc-dot"     data-card="1" role="tab" aria-selected="false" aria-label="Health Screening"></button>
-          <button class="tc-dot"     data-card="2" role="tab" aria-selected="false" aria-label="Preventive Care"></button>
-          <button class="tc-dot"     data-card="3" role="tab" aria-selected="false" aria-label="Occupational Medicine"></button>
-          <button class="tc-dot"     data-card="4" role="tab" aria-selected="false" aria-label="Paediatrics"></button>
-          <button class="tc-dot"     data-card="5" role="tab" aria-selected="false" aria-label="Women's Health"></button>
-          <button class="tc-dot"     data-card="6" role="tab" aria-selected="false" aria-label="Vaccinations"></button>
-          <button class="tc-dot"     data-card="7" role="tab" aria-selected="false" aria-label="Chronic Disease Management"></button>
-        </div>
-        <button class="tc-btn" id="srv-next" aria-label="Next service">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
       </div>
 
-    </div><!-- /services-turnstile -->
+      <!-- RIGHT: Interactive card stack (21st-dev style) -->
+      <div class="srv-stack-wrapper">
+
+        <div class="srv-stack-area">
+          <!-- Prev -->
+          <button class="srv-nav-btn" id="srvPrev" aria-label="Previous service">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+
+          <!-- Card stack -->
+          <div class="srv-stack" id="srvStack">
+            <ul class="srv-cards" id="srvCards">
+
+              <!-- 01 General Practice -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                  <span class="srv-num">01</span>
+                </div>
+                <h3 class="srv-card-title">General Practice</h3>
+                <p class="srv-card-desc">Comprehensive consultations and treatment for everyday health needs, illnesses, and injuries.</p>
+              </li>
+
+              <!-- 02 Health Screening -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+                  <span class="srv-num">02</span>
+                </div>
+                <h3 class="srv-card-title">Health Screening</h3>
+                <p class="srv-card-desc">Preventive screenings and check-ups tailored to your age, lifestyle, and risk profile.</p>
+              </li>
+
+              <!-- 03 Preventive Care -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                  <span class="srv-num">03</span>
+                </div>
+                <h3 class="srv-card-title">Preventive Care</h3>
+                <p class="srv-card-desc">Proactive strategies and lifestyle counselling to maintain and maximise your long-term wellbeing.</p>
+              </li>
+
+              <!-- 04 Occupational Medicine -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+                  <span class="srv-num">04</span>
+                </div>
+                <h3 class="srv-card-title">Occupational Medicine</h3>
+                <p class="srv-card-desc">Workplace health assessments, fitness-to-work evaluations, and work-related condition management.</p>
+              </li>
+
+              <!-- 05 Paediatrics -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <span class="srv-num">05</span>
+                </div>
+                <h3 class="srv-card-title">Paediatrics</h3>
+                <p class="srv-card-desc">Dedicated and compassionate care for infants, children, and adolescents at every stage of growth.</p>
+              </li>
+
+              <!-- 06 Women's Health -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+                  <span class="srv-num">06</span>
+                </div>
+                <h3 class="srv-card-title">Women's Health</h3>
+                <p class="srv-card-desc">Holistic and sensitive care for women at every stage of life, from reproductive health to menopause.</p>
+              </li>
+
+              <!-- 07 Vaccinations -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 3-3-6-3 6-3-3H2"/></svg></div>
+                  <span class="srv-num">07</span>
+                </div>
+                <h3 class="srv-card-title">Vaccinations</h3>
+                <p class="srv-card-desc">Full range of immunisations for children and adults, including travel vaccines and flu shots.</p>
+              </li>
+
+              <!-- 08 Chronic Disease Management -->
+              <li class="srv-card-item">
+                <div class="srv-card-header">
+                  <div class="srv-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                  <span class="srv-num">08</span>
+                </div>
+                <h3 class="srv-card-title">Chronic Disease Management</h3>
+                <p class="srv-card-desc">Ongoing support and monitoring for diabetes, hypertension, high cholesterol, and other long-term conditions.</p>
+              </li>
+
+            </ul>
+          </div><!-- /srv-stack -->
+
+          <!-- Next -->
+          <button class="srv-nav-btn" id="srvNext" aria-label="Next service">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div><!-- /srv-stack-area -->
+
+        <!-- Progress dots -->
+        <div class="srv-dots-row" id="srvDots" role="tablist" aria-label="Browse services"></div>
+
+        <p class="srv-hint">↕ Drag up / down &nbsp;·&nbsp; ← → to browse</p>
+
+      </div><!-- /srv-stack-wrapper -->
+
+    </div>
   </div>
 
 </section>
@@ -1503,7 +1781,7 @@
     </div>
 
     <!-- Hours banner -->
-    <div class="reveal hours-banner" style="background:var(--forest); border-radius:2px; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; box-shadow:0 4px 20px rgba(10,51,64,0.15);">
+    <div class="reveal hours-banner" style="background:var(--forest); border-radius:2px; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:2.5rem; box-shadow:0 4px 20px rgba(20,48,76,0.15);">
       <div style="display:flex; align-items:center; gap:0.625rem; color:rgba(255,255,255,0.85); font-size:0.875rem;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-pale)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <strong style="color:#fff;">Opening Hours</strong>
@@ -1517,7 +1795,7 @@
       <!-- Little India Branch -->
       <div class="branch-card branch-main reveal" onclick="openMapModal('chander')" tabindex="0" role="button" aria-label="View Little India branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('chander')}">
         <div style="margin-bottom:1.5rem;">
-          <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Little India</span>
+          <span style="background:rgba(20,48,76,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Little India</span>
         </div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Little India Branch</h3>
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">668 Chander Rd, #01-20<br>Singapore 210668</p>
@@ -1541,7 +1819,7 @@
       <!-- Jurong Branch -->
       <div class="branch-card reveal reveal-delay-2" onclick="openMapModal('jurong')" tabindex="0" role="button" aria-label="View Jurong branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('jurong')}">
         <div style="margin-bottom:1.5rem;">
-          <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Jurong West</span>
+          <span style="background:rgba(20,48,76,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Jurong West</span>
         </div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Jurong Branch</h3>
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">463 Jurong West Street 41, #01-558<br>Singapore 640463</p>
@@ -1565,7 +1843,7 @@
       <!-- Tampines Branch -->
       <div class="branch-card reveal reveal-delay-4" onclick="openMapModal('tampines')" tabindex="0" role="button" aria-label="View Tampines branch on map" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal('tampines')}">
         <div style="margin-bottom:1.5rem;">
-          <span style="background:rgba(10,51,64,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Tampines</span>
+          <span style="background:rgba(20,48,76,0.1); color:var(--forest); font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.625rem; border-radius:1px;">Tampines</span>
         </div>
         <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--forest-deep); margin-bottom:0.375rem;">Tampines Branch</h3>
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem; line-height:1.6;">138 Tampines Street 11, #01-126<br>Singapore 521138</p>
@@ -1592,7 +1870,7 @@
 
 <!-- ══════════ PATIENT TESTIMONIALS ══════════ -->
 <section id="testimonials" style="padding: 7rem 2.5rem; background: var(--forest-deep); position:relative; overflow:hidden;">
-  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 15% 55%, rgba(33,150,164,0.09) 0%, transparent 60%), radial-gradient(ellipse at 85% 20%, rgba(201,148,74,0.06) 0%, transparent 55%); pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 15% 55%, rgba(72,128,164,0.09) 0%, transparent 60%), radial-gradient(ellipse at 85% 20%, rgba(201,148,74,0.06) 0%, transparent 55%); pointer-events:none;"></div>
   <div style="max-width:1100px; margin:0 auto; position:relative;">
 
     <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
@@ -1757,10 +2035,10 @@
      style="position:fixed; inset:0; z-index:900; display:flex; align-items:center; justify-content:center; padding:1.5rem;
             opacity:0; pointer-events:none; transition:opacity 0.3s cubic-bezier(0.4,0,0.2,1);">
   <div onclick="closeVideoModal()"
-       style="position:absolute; inset:0; background:rgba(5,18,12,0.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"></div>
+       style="position:absolute; inset:0; background:rgba(14,32,50,0.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"></div>
   <div id="video-modal-box" style="position:relative; z-index:1; width:100%; max-width:560px;
        background:var(--forest-deep); border:1px solid rgba(201,148,74,0.15); border-radius:4px;
-       overflow:hidden; box-shadow:0 32px 80px rgba(5,18,12,0.7);
+       overflow:hidden; box-shadow:0 32px 80px rgba(14,32,50,0.7);
        transform:translateY(20px) scale(0.96); transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);">
 
     <!-- Thumbnail -->
@@ -1769,7 +2047,7 @@
            onerror="this.src='https://img.youtube.com/vi/VXs0ld7OrR4/hqdefault.jpg'"
            alt="Managing Medicines While Fasting thumbnail"
            style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; opacity:0.55;">
-      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,51,64,0.95) 0%, rgba(10,51,64,0.2) 60%);"></div>
+      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,48,76,0.95) 0%, rgba(20,48,76,0.2) 60%);"></div>
       <!-- YouTube logo watermark -->
       <div style="position:absolute; top:1rem; left:1rem; display:flex; align-items:center; gap:0.5rem;">
         <svg height="18" viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1919,9 +2197,9 @@
     </p>
     <a href="Shifa Clinic Privacy Statement_final_10042024.pdf"
        target="_blank" rel="noopener noreferrer"
-       style="display:inline-flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--forest); text-decoration:none; border:1px solid rgba(10,51,64,0.2); padding:0.625rem 1.25rem; border-radius:2px; transition:background 0.2s ease, border-color 0.2s ease;"
-       onmouseover="this.style.background='rgba(10,51,64,0.06)'; this.style.borderColor='rgba(10,51,64,0.35)';"
-       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(10,51,64,0.2)';">
+       style="display:inline-flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--forest); text-decoration:none; border:1px solid rgba(20,48,76,0.2); padding:0.625rem 1.25rem; border-radius:2px; transition:background 0.2s ease, border-color 0.2s ease;"
+       onmouseover="this.style.background='rgba(20,48,76,0.06)'; this.style.borderColor='rgba(20,48,76,0.35)';"
+       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(20,48,76,0.2)';">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Download Privacy Statement (PDF)
     </a>
@@ -1999,14 +2277,19 @@
 
     /* ── Header ── */
     #header { padding: 0.875rem 1.25rem !important; }
-    .nav-ctas .btn-tel { display: none !important; }
-    .btn-wa span:not([aria-hidden]) { display: none; }
-    .btn-wa { padding: 0.625rem 0.875rem !important; }
-    .logo-text img { height: 36px !important; }
-    .logo-text span { font-size: 1.1rem !important; }
-    .logo-sub { display: none !important; }
-    /* Ensure hamburger is reachable — 44×44 tap target */
-    .mobile-menu-btn { padding: 10px !important; margin-right: -10px; }
+    /* Logo: image only on mobile — hide the text block */
+    .logo-text > span { display: none !important; }
+    .logo-text img { height: 40px !important; }
+    /* WA button: compact 44×44 icon-only circle */
+    .btn-wa span { display: none !important; }
+    .btn-wa {
+      width: 44px !important; height: 44px !important;
+      min-width: 0 !important; padding: 0 !important;
+      border-radius: 50% !important;
+      justify-content: center !important;
+    }
+    /* Hamburger: proper 44×44 tap target */
+    .mobile-menu-btn { padding: 10px !important; margin: 0 !important; }
 
     /* ── Hero ── */
     #hero { min-height: auto !important; }
@@ -2232,7 +2515,6 @@
   }
 
   initTurnstile('ts-stage',  'ts-prev',  'ts-next',  'turnstile',          3500);
-  initTurnstile('srv-stage', 'srv-prev', 'srv-next', 'services-turnstile', 3000);
 
   // Video card keyboard accessibility
   document.querySelectorAll('.video-card[role="link"]').forEach(card => {
@@ -2247,7 +2529,7 @@
       name: 'Dr Mohamed Ghazali',
       credentials: 'MBBS (NUS), Dip Occupational Medicine, Dip Family Medicine',
       avatar: 'MG',
-      avatarBg: 'linear-gradient(135deg,#aee3ed,#2196a4)',
+      avatarBg: 'linear-gradient(135deg,#C8D8E8,#1C4060)',
       tags: ['NUS 1991', 'A&E · Ortho · Gen Med', 'Occupational Medicine', 'Family Medicine', 'MHPA Founding Member'],
       bio: [
         'Dr Mohamed Ghazali did his pre-university education at Raffles Institution and Raffles Junior College. He obtained his MBBS degree from the National University of Singapore in 1991.',
@@ -2261,7 +2543,7 @@
       name: 'Dr Mohamed Baisal',
       credentials: 'MBBS (NUS)',
       avatar: 'MB',
-      avatarBg: 'linear-gradient(135deg,#d8f3dc,#95d5b2)',
+      avatarBg: 'linear-gradient(135deg,#E0EEF5,#4880A4)',
       tags: ['NUS 2004', 'Hajj Medical Mission', 'MUIS'],
       bio: [
         'Dr Baisal graduated from the National University of Singapore in 2004. He is married with two children and greatly enjoys his time caring for patients at the clinic.',
@@ -2272,7 +2554,7 @@
       name: 'Dr Mogilan s/o Mohan',
       credentials: 'MBBS (NUS), Grad Dip Family Medicine, Registered Family Physician (SMC)',
       avatar: 'MM',
-      avatarBg: 'linear-gradient(135deg,#c8edf5,#1a6b7c)',
+      avatarBg: 'linear-gradient(135deg,#fde9c0,#1C4060)',
       tags: ['NUS 2010', 'Internal Medicine Residency', 'Grad Dip Fam Med 2018', 'Registered FP 2019', 'COVID Commendation Medal 2023', 'English · Tamil'],
       bio: [
         'Dr Mogilan s/o Mohan has over a decade of experience working as a doctor. He is fluent in both English and Tamil.',
@@ -2286,7 +2568,7 @@
       name: 'Dr Siti Sarina',
       credentials: 'MBBS (Duke-NUS), Grad Dip Family Medicine (NUS)',
       avatar: 'SS',
-      avatarBg: 'linear-gradient(135deg,#e8f4ea,#95d5b2)',
+      avatarBg: 'linear-gradient(135deg,#EEF4FF,#78AACC)',
       tags: ['Duke-NUS 2011', 'SGH · KKH · KTPH', 'Bedok Polyclinic', 'Grad Dip Fam Med 2019', "Women's Health"],
       bio: [
         'Dr Siti Sarina graduated from Duke-NUS Medical School in 2011. She completed various clinical postings at Singapore General Hospital, KK Women\'s and Children\'s Hospital, and Khoo Teck Puat Hospital.',
@@ -2299,7 +2581,7 @@
       name: 'Dr Murali Dharan',
       credentials: 'MBBS (NUS), Dip Family Medicine (NUS)',
       avatar: 'MD',
-      avatarBg: 'linear-gradient(135deg,#aee3ed,#0a3340)',
+      avatarBg: 'linear-gradient(135deg,#C8D8E8,#0D2238)',
       tags: ['NUS 1990', '20+ Years Family Physician', '10 Years Private Practice', 'Paediatrics'],
       bio: [
         'Dr Murali Dharan graduated from the National University of Singapore in 1990. He completed his Postgraduate Diploma in Family Medicine in 2003 at the National University of Singapore.',
@@ -2324,7 +2606,7 @@
     const avatar = document.getElementById('modal-avatar');
     avatar.textContent = doc.avatar;
     avatar.style.background = doc.avatarBg;
-    avatar.style.color = '#0a3340';
+    avatar.style.color = '#0D2238';
 
     document.getElementById('modal-doctor-name').textContent = doc.name;
     document.getElementById('modal-credentials').textContent = doc.credentials;
@@ -2578,8 +2860,8 @@
       svg.setAttribute('viewBox', '0 0 696 316');
       svg.setAttribute('fill', 'none');
       svg.setAttribute('aria-hidden', 'true');
-      // Use clinic's dark teal as path colour (matches --text: #0d2d3a)
-      svg.style.color = '#0d2d3a';
+      // Use clinic's dark teal as path colour (matches --text: #132010)
+      svg.style.color = '#0F172A';
 
       const pathEls = [];
 
@@ -2640,10 +2922,178 @@
       });
     });
   })();
+
+  // ── DIGITAL SERENITY HERO INTERACTIONS ──
+  (function() {
+    const heroEl = document.getElementById('hero');
+    const mouseGrad = document.getElementById('hero-mouse-gradient');
+    if (!heroEl || !mouseGrad) return;
+
+    // Mouse-tracking radial gradient
+    heroEl.addEventListener('mousemove', (e) => {
+      const rect = heroEl.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+      mouseGrad.style.background = `radial-gradient(700px circle at ${x}% ${y}%, rgba(40,120,176,0.22) 0%, transparent 65%)`;
+    });
+    heroEl.addEventListener('mouseleave', () => {
+      mouseGrad.style.background = `radial-gradient(700px circle at 50% 50%, rgba(40,120,176,0.07) 0%, transparent 65%)`;
+    });
+
+    // Click ripple effect
+    heroEl.addEventListener('click', (e) => {
+      // Skip if clicking a link/button
+      if (e.target.closest('a, button')) return;
+      const rect = heroEl.getBoundingClientRect();
+      const ripple = document.createElement('div');
+      ripple.className = 'hero-ripple';
+      ripple.style.left = (e.clientX - rect.left) + 'px';
+      ripple.style.top  = (e.clientY - rect.top) + 'px';
+      heroEl.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  })();
+
+  /* ── SERVICES CARD STACK ── */
+  (function () {
+    const stackEl = document.getElementById('srvStack');
+    if (!stackEl) return;
+
+    const cardEls  = Array.from(document.querySelectorAll('#srvCards .srv-card-item'));
+    const dotsWrap = document.getElementById('srvDots');
+    const N        = cardEls.length;
+
+    const OFFSET  = 13;   // px per stack level (cards rise upward)
+    const SCALE   = 0.055;
+    const DIM     = 0.12;
+    const VISIBLE = 5;    // how many cards are visible in the stack
+
+    // order[i] = index into cardEls for the card at position i (0 = front)
+    let order = Array.from({ length: N }, (_, i) => i);
+
+    // ── Dots ──
+    const dots = Array.from({ length: N }, (_, i) => {
+      const btn = document.createElement('button');
+      btn.className    = 'srv-dot' + (i === 0 ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', 'Service ' + (i + 1));
+      btn.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(btn);
+      return btn;
+    });
+
+    function updateDots() {
+      dots.forEach((d, i) => d.classList.toggle('active', i === order[0]));
+    }
+
+    // ── Apply visual position to a single card ──
+    function setStyle(el, pos, animate) {
+      const br = Math.max(0.3, 1 - pos * DIM);
+      el.style.transition = animate
+        ? 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s ease,filter 0.45s ease,box-shadow 0.3s ease'
+        : 'none';
+      el.style.transform    = 'translateY(' + (-pos * OFFSET) + 'px) scale(' + (1 - pos * SCALE).toFixed(4) + ')';
+      el.style.filter       = 'brightness(' + br.toFixed(3) + ')';
+      el.style.zIndex       = String(100 - pos);
+      el.style.opacity      = pos < VISIBLE ? '1' : '0';
+      el.style.pointerEvents = pos === 0 ? 'auto' : 'none';
+      el.dataset.pos        = String(pos);
+    }
+
+    function applyAll(animate) {
+      order.forEach((sIdx, pos) => setStyle(cardEls[sIdx], pos, animate));
+      updateDots();
+    }
+
+    // ── Cycle forward (next) ──
+    function cycleForward() {
+      const front = cardEls[order[0]];
+      // Fly front card upward and fade
+      front.style.transition = 'transform 0.2s ease-in,opacity 0.2s ease-in';
+      front.style.transform  = 'translateY(-52px) scale(0.86)';
+      front.style.opacity    = '0';
+      setTimeout(function () {
+        order = order.slice(1).concat(order[0]);
+        // Snap the old front to back position without animation
+        setStyle(front, N - 1, false);
+        requestAnimationFrame(function () { applyAll(true); });
+      }, 200);
+    }
+
+    // ── Cycle backward (prev) ──
+    function cycleBackward() {
+      const last = cardEls[order[N - 1]];
+      // Start last card below, then bring to front
+      last.style.transition  = 'none';
+      last.style.transform   = 'translateY(52px) scale(0.86)';
+      last.style.opacity     = '0';
+      last.style.zIndex      = '200';
+      order = [order[N - 1]].concat(order.slice(0, N - 1));
+      requestAnimationFrame(function () { applyAll(true); });
+    }
+
+    // ── Jump to a specific service index ──
+    function goTo(targetIdx) {
+      const pos = order.indexOf(targetIdx);
+      if (pos === 0) return;
+      var steps = pos <= N / 2 ? pos : -(N - pos);
+      var absSteps = Math.abs(steps);
+      var fn = steps > 0 ? cycleForward : cycleBackward;
+      for (var i = 0; i < absSteps; i++) {
+        (function (delay) { setTimeout(fn, delay); })(i * 130);
+      }
+    }
+
+    // ── Drag / swipe ──
+    var isDragging = false, startY = 0, startT = 0, draggingCard = null;
+
+    stackEl.addEventListener('pointerdown', function (e) {
+      var card = e.target.closest('.srv-card-item');
+      if (!card || card.dataset.pos !== '0') return;
+      isDragging   = true;
+      draggingCard = card;
+      startY       = e.clientY;
+      startT       = Date.now();
+      card.setPointerCapture(e.pointerId);
+      card.style.transition = 'none';
+      card.style.cursor     = 'grabbing';
+    });
+
+    stackEl.addEventListener('pointermove', function (e) {
+      if (!isDragging || !draggingCard) return;
+      var dy = e.clientY - startY;
+      draggingCard.style.transform = 'translateY(' + dy + 'px) scale(' + (1 + Math.abs(dy) * 0.0007).toFixed(4) + ')';
+      draggingCard.style.opacity   = String(Math.max(0.1, 1 - Math.abs(dy) / 160));
+    });
+
+    ['pointerup', 'pointercancel'].forEach(function (evt) {
+      stackEl.addEventListener(evt, function (e) {
+        if (!isDragging) return;
+        isDragging = false;
+        var card = draggingCard;
+        draggingCard = null;
+        if (card) card.style.cursor = 'grab';
+        var dy  = e.clientY - startY;
+        var vel = Math.abs(dy) / Math.max(Date.now() - startT, 1) * 1000;
+        if (Math.abs(dy) > 50 || vel > 400) {
+          dy < 0 ? cycleForward() : cycleBackward();
+        } else if (card) {
+          setStyle(card, 0, true);
+        }
+      });
+    });
+
+    // ── Buttons ──
+    document.getElementById('srvPrev').addEventListener('click', cycleBackward);
+    document.getElementById('srvNext').addEventListener('click', cycleForward);
+
+    // ── Init ──
+    applyAll(false);
+  })();
 </script>
 
-<div style="text-align:center; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: #4a7a88;">
-  Website design by <a href="https://www.instagram.com/de.makers.space/" target="_blank" rel="noopener noreferrer" style="color: #1a6b7c; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(26,107,124,0.3); transition: color 0.2s, border-color 0.2s;" onmouseover="this.style.color='#0a3340';this.style.borderColor='rgba(10,51,64,0.6)'" onmouseout="this.style.color='#1a6b7c';this.style.borderColor='rgba(26,107,124,0.3)'">De Makers Space</a>
+<div style="text-align:center; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: #5a7a65;">
+  Website design by <a href="https://www.instagram.com/de.makers.space/" target="_blank" rel="noopener noreferrer" style="color: #4880A4; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(59,93,184,0.3); transition: color 0.2s, border-color 0.2s;" onmouseover="this.style.color='#0F172A';this.style.borderColor='rgba(15,23,42,0.6)'" onmouseout="this.style.color='#4880A4';this.style.borderColor='rgba(59,93,184,0.3)'">De Makers Space</a>
 </div>
 
 </body>
