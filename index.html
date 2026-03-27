@@ -879,8 +879,12 @@
     @media (max-width: 768px) {
       .srv-grid { grid-template-columns: 1fr; }
       .srv-sticky-col { position: relative; min-height: auto; padding: 4rem 0 2rem; }
-      .srv-stack-wrapper { min-height: auto; padding: 0 0 5rem; }
-      .srv-stack { width: min(320px, 88vw); height: 200px; }
+      .srv-stack-wrapper { min-height: auto; padding: 0 0 5rem; width: 100%; }
+      .srv-stack-area { position: relative; justify-content: center; width: 100%; }
+      .srv-stack { width: 100%; max-width: 320px; height: 200px; }
+      .srv-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; }
+      #srvPrev { left: 0; }
+      #srvNext { right: 0; }
     }
 
     /* ── BRANCHES ── */
